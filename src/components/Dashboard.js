@@ -20,12 +20,14 @@ const Dashboard = ({
   const [walkInData, setWalkInData] = useState({ name: '', service: '' });
 
   const services = [
-    'Classic Haircut',
+    // Barbering Services
+    'Adult Haircut',
     'Beard Trim',
-    'Full Service',
-    'Head Shave',
-    'Kids Cut',
-    'Grey Coverage'
+    'Kids Haircut',
+    // Tailoring Services
+    'Measurements',
+    'Sewing',
+    'Amendments'
   ];
 
   useEffect(() => {
@@ -66,14 +68,21 @@ const Dashboard = ({
       return;
     }
     
-    if (walkInData.name && walkInData.service) {
-      addWalkInCustomer(walkInData);
-      setWalkInData({ name: '', service: '' });
-      setShowWalkInForm(false);
-      alert('Walk-in customer added to queue!');
-    } else {
-      alert('Please fill in all fields');
+    // Validate required fields with specific error messages
+    if (!walkInData.name || !walkInData.name.trim()) {
+      alert('Please enter the customer name to add them to the queue.');
+      return;
     }
+    
+    if (!walkInData.service) {
+      alert('Please select a service for the walk-in customer.');
+      return;
+    }
+    
+    addWalkInCustomer(walkInData);
+    setWalkInData({ name: '', service: '' });
+    setShowWalkInForm(false);
+    alert('Walk-in customer added to queue!');
   };
 
   const handleWalkInChange = (e) => {
@@ -229,7 +238,36 @@ const Dashboard = ({
                 <div className="card-body">
                   <div className="current-queue">
                     {currentQueue.length > 0 ? (
-                      currentQueue.map((customer, index) => {
+                      currentQueue
+                        .slice()
+                        .sort((a, b) => {
+                          // Helper function to convert time string to comparable format
+                          const parseTime = (customer) => {
+                            if (customer.type === 'walkin') {
+                              // For walk-ins, use timestamp
+                              return new Date(customer.timestamp);
+                            } else {
+                              // For online bookings, parse the time string (e.g., "2:00 PM")
+                              const today = new Date();
+                              const [time, period] = customer.time.split(' ');
+                              const [hours, minutes] = time.split(':');
+                              let hour24 = parseInt(hours);
+                              
+                              if (period === 'PM' && hour24 !== 12) {
+                                hour24 += 12;
+                              } else if (period === 'AM' && hour24 === 12) {
+                                hour24 = 0;
+                              }
+                              
+                              const bookingTime = new Date(today);
+                              bookingTime.setHours(hour24, parseInt(minutes), 0, 0);
+                              return bookingTime;
+                            }
+                          };
+                          
+                          return parseTime(a) - parseTime(b);
+                        })
+                        .map((customer, index) => {
                         const formatTime = (timestamp) => {
                           const date = typeof timestamp === 'string' ? new Date(timestamp) : new Date(timestamp);
                           return date.toLocaleTimeString('en-US', { 

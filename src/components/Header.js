@@ -56,15 +56,15 @@ const Header = () => {
               <div className="logo-icon">
                 <img
                   src={barbershopLogo}
-                  alt="RICHYS CUTSs Logo"
+                  alt="RICHYS CUTS & DESIGNS Logo"
                   width="45"
                   height="45"
                 />
               </div>
               <div className="brand-text">
-                <span className="brand-name">RICHYS CUTS</span>
+                <span className="brand-name">RICHYS CUTS & DESIGNS</span>
                 <span className="brand-tagline">
-                  Modern Barbershop Experience
+                  Barbershop & Tailoring Studio
                 </span>
               </div>
             </div>
@@ -140,7 +140,7 @@ const Header = () => {
               ))}
             </ul>
             <div className="mobile-nav-footer">
-              <p>RICHYS CUTS - Modern Barbershop Experience</p>
+              <p>RICHYS CUTS & DESIGNS - Barbershop & Tailoring Studio</p>
             </div>
           </div>
         </nav>

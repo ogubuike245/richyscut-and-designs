@@ -33,8 +33,8 @@ const Contact = () => {
           <div className="contact-hero-content">
             <h1 className="contact-title">Get In Touch</h1>
             <p className="contact-subtitle">
-              We'd love to hear from you. Send us a message and we'll respond as
-              soon as possible.
+              Whether you need a fresh cut or custom tailoring, we'd love to hear from you. 
+              Send us a message and we'll respond as soon as possible.
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@ const Contact = () => {
                   />
                 </svg>
               </div>
-              <h3>Visit Our Shop</h3>
+              <h3>Visit Our Studio</h3>
               <p>
                 123 Main Street
                 <br />
@@ -90,7 +90,7 @@ const Contact = () => {
                 <br />
                 Available during business hours
                 <br />
-                for appointments & inquiries
+                for barbering & tailoring appointments
               </p>
             </div>
 
@@ -136,7 +136,7 @@ const Contact = () => {
             <div className="contact-form-container">
               <h2>Send Us a Message</h2>
               <p>
-                Have a question or want to book an appointment? Drop us a line!
+                Have a question or want to book a barbering or tailoring appointment? Drop us a line!
               </p>
 
               <form onSubmit={handleSubmit} className="contact-form">
@@ -226,7 +226,7 @@ const Contact = () => {
                       fill="currentColor"
                     />
                   </svg>
-                  <h3>RICHYS Barbershop</h3>
+                  <h3>RICHYS CUTS & DESIGNS</h3>
                   <p>123 Main Street, Downtown District</p>
                   <p>Your City, State 12345</p>
                   <a

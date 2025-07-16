@@ -6,8 +6,8 @@ function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>RICHYS CUTS</h3>
-            <p>Your premier destination for professional grooming and style.</p>
+            <h3>RICHYS CUTS & DESIGNS</h3>
+            <p>Your premier destination for professional grooming, style, and custom tailoring.</p>
             <div className="social-links">
               <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 📘
@@ -44,8 +44,8 @@ function Footer() {
             <ul>
               <li>Haircuts & Styling</li>
               <li>Beard Grooming</li>
-              <li>Hot Towel Shaves</li>
-              <li>Hair Washing</li>
+              <li>Custom Suits</li>
+              <li>Alterations</li>
             </ul>
           </div>
 
@@ -59,7 +59,7 @@ function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2024 RICHYS CUTS Barbershop. All rights reserved.</p>
+          <p>&copy; 2024 RICHYS CUTS & DESIGNS. All rights reserved.</p>
         </div>
       </div>
     </footer>

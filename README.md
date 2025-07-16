@@ -1,10 +1,10 @@
-# RICHYS Barbershop - Digital Queue Management System
+# RICHYS CUTS & DESIGNS - Digital Queue Management System
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#)
 
-A comprehensive digital barbershop management platform built with React, featuring an intelligent queue system that seamlessly integrates online bookings with walk-in customers. This modern solution eliminates wait times, improves customer experience, and streamlines barbershop operations.
+A comprehensive digital barbershop and tailoring studio management platform built with React, featuring an intelligent queue system that seamlessly integrates online bookings with walk-in customers. This modern solution eliminates wait times, improves customer experience, and streamlines both barbering and tailoring operations.
 
 ## 🚀 Key Features
 
@@ -13,7 +13,7 @@ A comprehensive digital barbershop management platform built with React, featuri
 - **Mixed Queue Visibility**: Real-time view of both online and walk-in customers
 - **Time Slot Management**: Available slots from 10:00 AM to 6:30 PM
 - **Automatic Booking Cutoff**: Online booking closes at 6:30 PM
-- **Service Selection**: Multiple barbershop services with pricing
+- **Service Selection**: Multiple barbering and tailoring services with pricing
 - **Queue Position Tracking**: Live updates on customer position
 
 ### Business Management
@@ -182,9 +182,9 @@ This creates an optimized `build` folder ready for deployment.
 ### Environment Variables
 Create a `.env` file in the root directory:
 ```env
-REACT_APP_SHOP_NAME=RICHYS Barbershop
+REACT_APP_SHOP_NAME=RICHYS CUTS & DESIGNS
 REACT_APP_CONTACT_PHONE=+234-XXX-XXX-XXXX
-REACT_APP_CONTACT_EMAIL=info@richysbarbershop.com
+REACT_APP_CONTACT_EMAIL=info@richyscutsanddesigns.com
 ```
 
 ### Customization

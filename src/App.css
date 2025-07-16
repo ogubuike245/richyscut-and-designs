@@ -1,14 +1,15 @@
 /* Professional Font System */
 :root {
   /* Primary Font Stack - Modern Sans-Serif for body text */
-  --font-primary: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
-  
+  --font-primary: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+
   /* Heading Font Stack - Elegant Serif for headings */
   --font-heading: "Playfair Display", "Georgia", "Times New Roman", serif;
-  
+
   /* Accent Font Stack - Clean Sans-Serif for navigation and UI */
   --font-accent: "Poppins", "Inter", "Segoe UI", sans-serif;
-  
+
   /* Monospace Font Stack - For code or special elements */
   --font-mono: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", monospace;
 }
@@ -39,7 +40,12 @@ body {
 }
 
 /* Typography System */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
@@ -86,7 +92,9 @@ p {
 }
 
 /* Navigation and UI Elements */
-.nav-link, .btn, .mobile-nav-link {
+.nav-link,
+.btn,
+.mobile-nav-link {
   font-family: var(--font-accent);
   font-weight: 500;
 }
@@ -1036,8 +1044,8 @@ p {
   }
 
   .gallery-filter-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 
   .gallery-header h1 {
@@ -1046,6 +1054,43 @@ p {
 
   .gallery-cta h2 {
     font-size: 1.5rem;
+  }
+
+  /* Queue page mobile styles */
+  .current-queue-display {
+    padding: 0.5rem;
+  }
+
+  .queue-list {
+    gap: 0.3rem;
+  }
+
+  .queue-list {
+    gap: 0.4rem;
+  }
+
+  .queue-item {
+    padding: 0.4rem 0.6rem;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .queue-position {
+    min-width: 25px;
+    font-size: 0.75rem;
+  }
+
+  .queue-name {
+    font-size: 0.8rem;
+  }
+
+  .queue-service {
+    font-size: 0.7rem;
+  }
+
+  .queue-time {
+    font-size: 0.7rem;
   }
 }
 
@@ -1374,11 +1419,33 @@ p {
 }
 
 .queue-booking-page .container {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Legacy styles for backward compatibility */
 .booking-title {
   text-align: center;
   font-size: 2.5rem;
@@ -1398,12 +1465,782 @@ p {
   line-height: 1.6;
 }
 
-.booking-section {
+/* Two-Panel Layout */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Left Panel - Booking Form */
+.booking-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background: white;
+  border-radius: 12px 12px 0 0;
+  padding: 2rem 2rem 1rem 2rem;
+  border-bottom: 2px solid #f1f3f4;
+}
+
+.panel-header h2 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Right Panel - Waitlist */
+.waitlist-panel {
   background: white;
   border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.waitlist-panel .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin: 0;
+  border-bottom: 2px solid #f1f3f4;
+  border-radius: 12px 12px 0 0;
+}
+
+.waitlist-panel .panel-header h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.current-time {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Queue Footer */
+.queue-footer {
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-radius: 0 0 12px 12px;
+  border-top: 1px solid #e9ecef;
+}
+
+.estimated-wait {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Booking Footer CTA */
+.booking-footer-cta {
+  background: white;
+  border-radius: 0 0 12px 12px;
   padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border-top: 2px solid #f1f3f4;
+}
+
+/* Mobile Sections - Hidden on Desktop */
+.mobile-sections {
+  display: none;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .waitlist-panel {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .queue-booking-page .container {
+    padding: 0 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Optimize booking layout for mobile */
+  .booking-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Hide mobile sections since we're using unified layout */
+  .mobile-sections {
+    display: none;
+  }
+
+  /* Mobile optimizations for booking panel */
+  .booking-panel {
+    order: 1;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .waitlist-panel {
+    order: 2;
+    position: static;
+    max-height: none;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* Compact mobile styles */
+  .panel-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .panel-title {
+    font-size: 1.3rem;
+  }
+
+  .booking-section {
+    padding: 1.5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .booking-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Optimize service grid for mobile */
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .service-card {
+    padding: 1rem;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Optimize time grid for mobile */
+  .time-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .time-btn {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    min-width: 0;
+    word-wrap: break-word;
+  }
+
+  /* User info grid mobile optimization */
+  .user-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Queue list mobile optimization */
+  .waitlist-panel .queue-list {
+    max-height: none;
+    padding: 0.5rem 0;
+    gap: 0.8rem;
+  }
+
+  .waitlist-panel .queue-item {
+    min-width: 160px;
+    max-width: 180px;
+    padding: 0.8rem;
+  }
+
+  .queue-list {
+    max-height: 400px;
+  }
+
+  .queue-item {
+    padding: 1rem;
+  }
+
+  .queue-customer-info {
+    gap: 0.8rem;
+    padding-left: 1.5rem;
+  }
+
+  .customer-type-icon {
+    font-size: 1rem;
+    width: 28px;
+    height: 28px;
+  }
+
+  .customer-name {
+    font-size: 0.9rem;
+  }
+
+  .customer-service {
+    font-size: 0.8rem;
+  }
+
+  .customer-time {
+    font-size: 0.75rem;
+  }
+
+  .mobile-section {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .mobile-section h3 {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}
+
+/* Additional mobile optimizations for very small screens */
+@media (max-width: 480px) {
+  .queue-booking-page .container {
+    padding: 0 0.5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .booking-layout {
+    gap: 0.8rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .panel-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .panel-title {
+    font-size: 1.1rem;
+  }
+
+  .booking-section {
+    padding: 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .booking-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Ultra-compact time grid */
+  .time-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .time-btn {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.8rem;
+    min-width: 0;
+    word-wrap: break-word;
+  }
+
+  /* Service cards more compact */
+  .service-card {
+    padding: 0.8rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .service-desc {
+    font-size: 0.8rem;
+  }
+
+  .service-price {
+    font-size: 1rem;
+  }
+
+  /* Form inputs */
+  .booking-panel input,
+  .booking-panel textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Queue items ultra-compact */
+  .waitlist-panel .queue-list {
+    padding: 0.3rem 0;
+    gap: 0.6rem;
+  }
+
+  .waitlist-panel .queue-item {
+    min-width: 140px;
+    max-width: 160px;
+    padding: 0.6rem;
+  }
+
+  .waitlist-panel .customer-type-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+
+  .queue-item {
+    padding: 0.8rem;
+  }
+
+  .queue-customer-info {
+    gap: 0.6rem;
+    padding-left: 1.2rem;
+  }
+
+  .customer-type-icon {
+    font-size: 0.9rem;
+    width: 24px;
+    height: 24px;
+  }
+
+  .customer-name {
+    font-size: 0.8rem;
+  }
+
+  .customer-service {
+    font-size: 0.75rem;
+  }
+
+  .customer-time {
+    font-size: 0.7rem;
+  }
+
+  .queue-position {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  /* Booking button */
+  .booking-footer-cta .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .mobile-booking-form {
+    padding: 1.5rem;
+  }
+
+  .mobile-queue-list {
+    padding: 0;
+  }
+
+  .mobile-queue-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f1f3f4;
+  }
+
+  .mobile-queue-item:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-customer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .mobile-customer-info .customer-type-icon {
+    font-size: 1rem;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 6px;
+  }
+
+  .mobile-customer-info .customer-details {
+    flex: 1;
+  }
+
+  .mobile-customer-info .customer-name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .mobile-customer-info .customer-service {
+    color: #6c757d;
+    font-size: 0.8rem;
+  }
+
+  .mobile-customer-info .customer-time {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  /* Mobile booking form styles */
+  .mobile-booking-form .booking-section {
+    background: transparent;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f3f4;
+  }
+
+  .mobile-booking-form .booking-section:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-booking-form .booking-section h3 {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 1.1rem;
+  }
+}
+
+.booking-section {
+  background: white;
+  border-radius: 0;
+  padding: 2rem;
+  margin-bottom: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.booking-section:last-child {
+  border-bottom: none;
+}
+
+/* Waitlist Queue Styles - Clean Card Design */
+.waitlist-panel .queue-list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Carousel container */
+.queue-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Carousel arrows - Minimalist Design */
+.carousel-arrow {
+  background: #d4af37;
+  color: #ffffff;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-arrow:hover {
+  background: #b8941f;
+  color: #ffffff;
+  border-color: #b8941f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-arrow:disabled {
+  background: #f3f4f6;
+  color: #d1d5db;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Custom scrollbar for queue list - Minimalist */
+.waitlist-panel .queue-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.waitlist-panel .queue-list::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.waitlist-panel .queue-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+.waitlist-panel .queue-list::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.waitlist-panel .queue-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 12px;
+  min-width: 200px;
+  max-width: 220px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.waitlist-panel .queue-item:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-color: #d0d7de;
+}
+
+.waitlist-panel .queue-item:last-child {
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Subtle customer type indicators */
+.waitlist-panel .queue-item[data-customer-type="online"]::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #007bff;
+  opacity: 0.7;
+}
+
+.waitlist-panel .queue-item[data-customer-type="walkin"]::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28a745;
+  opacity: 0.7;
+}
+
+.waitlist-panel .queue-item[data-customer-type="appointment"]::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dc3545;
+  opacity: 0.7;
+}
+
+.waitlist-panel .queue-position {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: #f8f9fa;
+  color: #495057;
+  border-radius: 6px;
+  width: 26px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid #e9ecef;
+  box-shadow: none;
+}
+
+.waitlist-panel .queue-customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  padding: 0;
+}
+
+.waitlist-panel .customer-type-icon {
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  border: 2px solid #e9ecef;
+  color: #6c757d;
+}
+
+.waitlist-panel .customer-details {
+  text-align: center;
+  flex: 1;
+}
+
+.waitlist-panel .customer-name {
+  font-weight: 600;
+  color: #212529;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.waitlist-panel .customer-service {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.waitlist-panel .customer-type-label {
+  background: #e7f3ff;
+  color: #007bff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  border: 1px solid #b3d9ff;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.waitlist-panel .customer-time {
+  font-size: 0.75rem;
+  color: #dc3545;
+  font-weight: 500;
+  text-align: left;
+  margin-top: 0.5rem;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.waitlist-panel .customer-time::before {
+  content: "🕐";
+  font-size: 0.7rem;
+}
+
+.waitlist-panel .current-indicator {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.waitlist-panel .status-badge {
+  background: #d4edda;
+  color: #155724;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: none;
+  border: 1px solid #c3e6cb;
+}
+
+.waitlist-panel .status-badge::before {
+  content: "✓";
+  font-size: 0.7rem;
+  color: #28a745;
+}
+
+/* Input and Textarea Styles for Booking Panel */
+.booking-panel input,
+.booking-panel textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  font-family: var(--font-primary);
+}
+
+.booking-panel input:focus,
+.booking-panel textarea:focus {
+  outline: none;
+  border-color: #dc3545;
+}
+
+.booking-panel textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 .booking-section h3 {
@@ -1481,10 +2318,12 @@ p {
 /* Time Grid */
 .time-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .time-btn {
@@ -1509,11 +2348,28 @@ p {
   border-color: #dc3545;
 }
 
+.time-btn.disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.time-btn.disabled:hover {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  box-shadow: none;
+}
+
 /* Service Grid */
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .booking-section .service-card {
@@ -1641,8 +2497,8 @@ p {
 /* How It Works */
 .how-it-works-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
 }
 
 .how-step {
@@ -1650,8 +2506,8 @@ p {
 }
 
 .step-icon {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: #dc3545;
   color: white;
@@ -1659,8 +2515,53 @@ p {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.2rem;
-  margin: 0 auto 1rem;
+  font-size: 1rem;
+  margin: 0 auto 0.5rem;
+}
+
+/* Mobile responsive styles for How It Works */
+@media (max-width: 768px) {
+  .how-it-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .step-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    margin: 0 auto 0.25rem;
+  }
+  
+  .step-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .step-desc {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-it-works-grid {
+    gap: 0.5rem;
+  }
+  
+  .step-icon {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+  
+  .step-title {
+    font-size: 0.8rem;
+  }
+  
+  .step-desc {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
 }
 
 .step-title {
@@ -1703,44 +2604,50 @@ p {
 .current-queue-display {
   background: #f8f9fa;
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .queue-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.1rem;
 }
 
 .queue-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.1rem;
+  padding: 0.1rem 0.1rem;
   background: white;
-  border-radius: 8px;
+  /* border-radius: 6px; */
   border: 1px solid #e0e0e0;
+  font-size: 0.25rem;
 }
 
 .queue-item.current {
-  background: #dc3545;
-  color: white;
-  border-color: #dc3545;
+  /* Removed background color to maintain consistent white background */
 }
 
 .queue-position {
   font-weight: 700;
-  min-width: 40px;
+  min-width: 30px;
+  font-size: 0.8rem;
 }
 
 .queue-name {
   font-weight: 600;
   flex: 1;
+  font-size: 0.55rem;
 }
 
 .queue-service {
-  font-size: 0.9rem;
+  font-size: 0.55rem;
   opacity: 0.8;
+}
+
+.queue-time {
+  font-size: 0.45rem;
+  opacity: 0.7;
 }
 
 .empty-queue {
@@ -2186,6 +3093,79 @@ p {
 
   .card-body {
     padding: 1rem;
+  }
+
+  /* Extra small mobile styles for queue page */
+  .gallery-filter-btn {
+    padding: 0rem 0.8rem;
+    font-size: 0.75rem;
+    min-width: auto;
+  }
+
+  .current-queue-display {
+    padding: 0.15rem;
+  }
+
+  .queue-item {
+    padding: 0.3rem 0.4rem;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    line-height: 1.1;
+  }
+
+  .queue-position {
+    min-width: 20px;
+    font-size: 0.7rem;
+  }
+
+  .queue-name {
+    font-size: 0.75rem;
+  }
+
+  .queue-service {
+    font-size: 0.65rem;
+  }
+
+  .queue-time {
+    font-size: 0.65rem;
+  }
+
+  .booking-title {
+    font-size: 2rem;
+  }
+
+  .booking-desc {
+    font-size: 1rem;
+  }
+
+  /* Extra compact queue styles for small phones */
+  .queue-customer-info {
+    gap: 0.3rem;
+  }
+
+  .customer-type-icon {
+    font-size: 0.8rem;
+    min-width: 16px;
+  }
+
+  .customer-type-label {
+    font-size: 0.6rem;
+    padding: 0.08rem 0.25rem;
+    border-radius: 6px;
+  }
+
+  .current-indicator {
+    font-size: 0.65rem;
+  }
+
+  .queue-info {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .queue-explanation {
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 }
 
@@ -2978,13 +3958,17 @@ textarea:focus {
 .queue-customer-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   flex: 1;
+  padding: 0.5rem 0;
 }
 
 .customer-type-icon {
   font-size: 1.2rem;
   min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .customer-type-icon.online {
@@ -2997,11 +3981,12 @@ textarea:focus {
 
 .customer-type-label {
   font-size: 0.8rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .customer-type-label:contains("Online") {
@@ -3017,23 +4002,28 @@ textarea:focus {
 .current-indicator {
   font-size: 0.85rem;
   color: #dc3545;
-  font-weight: 600;
+  font-weight: 700;
   font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .queue-info {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
   border-left: 4px solid #007bff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .queue-explanation {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #495057;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* Dashboard Customer Type Indicators */
@@ -3043,14 +4033,17 @@ textarea:focus {
 
 .customer-meta {
   display: flex;
-  gap: 1rem;
-  font-size: 0.8rem;
+  gap: 1.5rem;
+  font-size: 0.9rem;
   color: #6c757d;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  align-items: center;
 }
 
 .customer-time {
   font-style: italic;
+  font-weight: 500;
+  color: #495057;
 }
 
 .queue-position {
@@ -3169,14 +4162,39 @@ textarea:focus {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .queue-customer-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .customer-type-icon {
+    font-size: 0.8rem;
+    min-width: 16px;
+  }
+
+  .customer-type-label {
+    font-size: 0.6rem;
+    padding: 0.08rem 0.25rem;
+  }
+
+  .current-indicator {
+    font-size: 0.65rem;
+  }
+
+  .queue-info {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .queue-explanation {
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 
   .customer-meta {
-    flex-direction: column;
-    gap: 0.25rem;
+    flex-direction: row;
+    gap: 0.5rem;
+    font-size: 0.7rem;
   }
 
   .form-actions {
@@ -3185,6 +4203,102 @@ textarea:focus {
 
   .walkin-form {
     padding: 1rem;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .queue-carousel-container {
+    gap: 8px;
+  }
+
+  .waitlist-panel .queue-item {
+    min-width: 200px;
+    max-width: 220px;
+    padding: 1.25rem;
+  }
+
+  .waitlist-panel .customer-type-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra compact styles for very small screens */
+@media (max-width: 480px) {
+  .queue-customer-info {
+    gap: 0.2rem;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .customer-type-icon {
+    font-size: 0.7rem;
+    min-width: 14px;
+  }
+
+  .customer-type-label {
+    font-size: 0.55rem;
+    padding: 0.05rem 0.2rem;
+    border-radius: 4px;
+  }
+
+  .current-indicator {
+    font-size: 0.6rem;
+  }
+
+  .queue-info {
+    padding: 0.4rem;
+    margin-top: 0.4rem;
+  }
+
+  .queue-explanation {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .customer-meta {
+    flex-direction: row;
+    gap: 0.3rem;
+    font-size: 0.65rem;
+  }
+
+  .customer-time {
+    font-size: 0.6rem;
+  }
+
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .queue-carousel-container {
+    gap: 6px;
+  }
+
+  .waitlist-panel .queue-item {
+    min-width: 180px;
+    max-width: 200px;
+    padding: 1rem;
+  }
+
+  .waitlist-panel .customer-type-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .waitlist-panel .customer-name {
+    font-size: 0.9rem;
+  }
+
+  .waitlist-panel .customer-service {
+    font-size: 0.8rem;
   }
 }
 
