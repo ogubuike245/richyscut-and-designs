@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
-import Footer from "./Footer";
+import React, { useState } from "react";
 
-const Queue = ({ currentQueue, addToQueue }) => {
+
+const Queue = ({ addToQueue, currentQueue }) => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const queueListRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 4;
 
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -26,62 +26,25 @@ const Queue = ({ currentQueue, addToQueue }) => {
     return now >= openTime && now <= closeTime;
   };
 
-  const getBookingStatus = () => {
-    const now = new Date();
-    const openTime = new Date();
-    openTime.setHours(10, 0, 0, 0); // 10:00 AM
-    const closeTime = new Date();
-    closeTime.setHours(18, 30, 0, 0); // 6:30 PM
-
-    if (now < openTime) {
-      return { status: "closed", message: "Booking opens at 10:00 AM" };
-    } else if (now > closeTime) {
-      return { status: "closed", message: "Booking closed for today" };
-    } else {
-      return { status: "open", message: "Booking is currently available" };
-    }
-  };
-
-  // Services data for both barbering and tailoring
+  // Services data for barbering only
   const services = [
-    // Barbering Services
     {
       name: "Adult Haircut",
       desc: "Professional haircut with styling for adults",
-      price: "₦8,000",
+      price: "₦1,500",
       category: "barbering",
     },
     {
       name: "Beard Trim",
       desc: "Beard shaping and trim with hot towel",
-      price: "₦5,000",
+      price: "₦1,000",
       category: "barbering",
     },
     {
       name: "Kids Haircut",
       desc: "Professional haircut for children under 12",
-      price: "₦6,000",
+      price: "₦700",
       category: "barbering",
-    },
-
-    // Tailoring Services
-    {
-      name: "Measurements",
-      desc: "Professional body measurements for custom clothing",
-      price: "₦3,000",
-      category: "tailoring",
-    },
-    {
-      name: "Sewing",
-      desc: "Custom garment creation and construction",
-      price: "₦15,000",
-      category: "tailoring",
-    },
-    {
-      name: "Amendments",
-      desc: "Clothing alterations and adjustments",
-      price: "₦5,000",
-      category: "tailoring",
     },
   ];
   const times = [
@@ -108,97 +71,43 @@ const Queue = ({ currentQueue, addToQueue }) => {
   // Function to check if a time slot has passed
   const isTimePassed = (timeSlot) => {
     const now = new Date();
-    const [time, period] = timeSlot.split(' ');
-    const [hours, minutes] = time.split(':').map(Number);
-    
+    const [time, period] = timeSlot.split(" ");
+    const [hours, minutes] = time.split(":").map(Number);
+
     let hour24 = hours;
-    if (period === 'PM' && hours !== 12) {
+    if (period === "PM" && hours !== 12) {
       hour24 += 12;
-    } else if (period === 'AM' && hours === 12) {
+    } else if (period === "AM" && hours === 12) {
       hour24 = 0;
     }
-    
+
     const slotTime = new Date();
     slotTime.setHours(hour24, minutes, 0, 0);
-    
+
     return now > slotTime;
+  };
+
+  // Pagination handlers
+  const totalPages = currentQueue ? Math.ceil(currentQueue.length / itemsPerPage) : 0;
+  
+  const handlePrevPage = () => {
+    setCurrentPage(prev => Math.max(0, prev - 1));
+  };
+  
+  const handleNextPage = () => {
+    setCurrentPage(prev => Math.min(totalPages - 1, prev + 1));
+  };
+  
+  const getCurrentPageItems = () => {
+    if (!currentQueue || currentQueue.length === 0) return [];
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return currentQueue.slice(startIndex, endIndex);
   };
 
   // Handlers
   const handleUserInfoChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-  };
-
-  // Function to convert time string to minutes for sorting
-  const timeToMinutes = (timeStr) => {
-    if (!timeStr) return 0;
-
-    // Handle walk-in timestamps (already formatted time)
-    if (
-      timeStr.includes(":") &&
-      (timeStr.includes("AM") || timeStr.includes("PM"))
-    ) {
-      const [time, period] = timeStr.split(" ");
-      const [hours, minutes] = time.split(":").map(Number);
-      let totalMinutes = minutes;
-
-      if (period === "PM" && hours !== 12) {
-        totalMinutes += (hours + 12) * 60;
-      } else if (period === "AM" && hours === 12) {
-        totalMinutes += 0; // 12 AM is 0 hours
-      } else {
-        totalMinutes += hours * 60;
-      }
-
-      return totalMinutes;
-    }
-
-    return 0;
-  };
-
-  // Function to sort queue by time
-  const getSortedQueue = (queue) => {
-    if (!queue || queue.length === 0) return queue;
-
-    return [...queue].sort((a, b) => {
-      const timeA =
-        a.type === "walkin"
-          ? new Date(a.timestamp).toLocaleTimeString("en-US", {
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            })
-          : a.time;
-      const timeB =
-        b.type === "walkin"
-          ? new Date(b.timestamp).toLocaleTimeString("en-US", {
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            })
-          : b.time;
-
-      return timeToMinutes(timeA) - timeToMinutes(timeB);
-    });
-  };
-
-  // Carousel scroll functions
-  const scrollLeft = () => {
-    if (queueListRef.current) {
-      queueListRef.current.scrollBy({
-        left: -200,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    if (queueListRef.current) {
-      queueListRef.current.scrollBy({
-        left: 200,
-        behavior: "smooth",
-      });
-    }
   };
 
   const handleBooking = () => {
@@ -239,7 +148,9 @@ const Queue = ({ currentQueue, addToQueue }) => {
 
     // Check if selected time has passed
     if (isTimePassed(selectedTime)) {
-      alert("The selected time slot has already passed. Please choose a different time.");
+      alert(
+        "The selected time slot has already passed. Please choose a different time."
+      );
       setSelectedTime(null); // Clear the invalid selection
       return;
     }
@@ -286,63 +197,73 @@ const Queue = ({ currentQueue, addToQueue }) => {
       <div className="container">
         <div className="page-header">
           <h1 className="page-title">Book Your Appointment</h1>
-          <p className="page-subtitle">
-            Skip the wait and secure your spot with our streamlined booking
-            system
-          </p>
+          <p className="page-subtitle">How It Works</p>
+        </div>
+
+        {/* How It Works Steps */}
+        <div className="how-it-works-section">
+          <div className="how-it-works-grid">
+            <div className="how-step">
+              <div className="step-number">1</div>
+              <div className="step-content">
+                <h4>Choose Your Service</h4>
+                <p>Select from our range of professional beauty services</p>
+              </div>
+            </div>
+            <div className="how-step">
+              <div className="step-number">2</div>
+              <div className="step-content">
+                <h4>Select Preferred Time</h4>
+                <p>Pick a time slot that works best for your schedule</p>
+              </div>
+            </div>
+            <div className="how-step">
+              <div className="step-number">3</div>
+              <div className="step-content">
+                <h4>Complete Booking</h4>
+                <p>Fill in your details and confirm your appointment</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="booking-layout">
-          {/* Left Panel - Booking Form */}
+          {/* Booking Form */}
           <div className="booking-panel">
-            <div className="panel-header">
-              <h2 className="panel-title">📅 Schedule Your Visit</h2>
+            {/* Booking Availability Indicator */}
+            <div className="booking-availability-indicator">
+              {isBookingAvailable() ? (
+                <span className="availability-status available">
+                  🟢 Booking Available
+                </span>
+              ) : (
+                <span className="availability-status unavailable">
+                  🔴 Booking Currently Unavailable
+                </span>
+              )}
             </div>
 
-            {/* How It Works */}
+            {/* Preferred Time Section */}
             <section className="booking-section">
-              <h3>How It Works</h3>
-              <div className="how-it-works-grid">
-                <div className="how-step">
-                  <div className="step-icon">1</div>
-                  <div className="step-title">Join Queue</div>
-                  <div className="step-desc">
-                    Select your service and join our digital queue.
-                  </div>
-                </div>
-                <div className="how-step">
-                  <div className="step-icon">2</div>
-                  <div className="step-title">Get Updates</div>
-                  <div className="step-desc">
-                    Receive real-time updates on your position.
-                  </div>
-                </div>
-                <div className="how-step">
-                  <div className="step-icon">3</div>
-                  <div className="step-title">Arrive on Time</div>
-                  <div className="step-desc">
-                    Come in when it's almost your turn.
-                  </div>
-                </div>
-                <div className="how-step">
-                  <div className="step-icon">4</div>
-                  <div className="step-title">Enjoy Your Service</div>
-                  <div className="step-desc">
-                    Experience premium grooming with minimal wait.
-                  </div>
-                </div>
+              <h3>Preferred Time</h3>
+              <div className="time-grid">
+                {times.map((time) => {
+                  const isPassed = isTimePassed(time);
+                  return (
+                    <button
+                      key={time}
+                      className={`time-btn ${
+                        selectedTime === time ? "selected" : ""
+                      }${isPassed ? " disabled" : ""}`}
+                      onClick={() => !isPassed && setSelectedTime(time)}
+                      disabled={isPassed}
+                    >
+                      {time}
+                    </button>
+                  );
+                })}
               </div>
             </section>
-
-            {/* Booking Status Indicator */}
-            <div className={`booking-status ${getBookingStatus().status}`}>
-                <span className="status-icon">
-                  {getBookingStatus().status === "open" ? "🟢" : "🔴"}
-                </span>
-                <span className="status-message">
-                  {getBookingStatus().message}
-                </span>
-              </div>
 
             {/* Mobile Collapsible Sections */}
             <div className="mobile-sections">
@@ -382,102 +303,6 @@ const Queue = ({ currentQueue, addToQueue }) => {
                     </div>
                   </section>
 
-                  {/* Service Selection */}
-                  <section className="booking-section">
-                    <h3>Select Service</h3>
-                    <div className="gallery-filters">
-                      <button
-                        className={`gallery-filter-btn${
-                          selectedCategory === "all" ? " active" : ""
-                        }`}
-                        onClick={() => setSelectedCategory("all")}
-                      >
-                        All Services
-                      </button>
-                      <button
-                        className={`gallery-filter-btn${
-                          selectedCategory === "barbering" ? " active" : ""
-                        }`}
-                        onClick={() => setSelectedCategory("barbering")}
-                      >
-                        ✂️ Barbering
-                      </button>
-                      <button
-                        className={`gallery-filter-btn${
-                          selectedCategory === "tailoring" ? " active" : ""
-                        }`}
-                        onClick={() => setSelectedCategory("tailoring")}
-                      >
-                        🧵 Tailoring
-                      </button>
-                    </div>
-
-                    <div className="service-grid">
-                      {services
-                        .filter(
-                          (service) =>
-                            selectedCategory === "all" ||
-                            service.category === selectedCategory
-                        )
-                        .map((service) => (
-                          <button
-                            key={service.name}
-                            className={`service-card${
-                              selectedService === service.name
-                                ? " selected"
-                                : ""
-                            } ${service.category}`}
-                            onClick={() => setSelectedService(service.name)}
-                          >
-                            <div className="service-category-badge">
-                              {service.category === "barbering" ? "✂️" : "🧵"}
-                            </div>
-                            <div className="service-title">{service.name}</div>
-                            <div className="service-desc">{service.desc}</div>
-                            <div className="service-price">{service.price}</div>
-                          </button>
-                        ))}
-                    </div>
-                  </section>
-
-                  {/* User Information */}
-                  <section className="booking-section">
-                    <h3>Your Information</h3>
-                    <div className="user-info-grid">
-                      <input
-                        name="firstName"
-                        placeholder="First Name"
-                        value={userInfo.firstName}
-                        onChange={handleUserInfoChange}
-                      />
-                      <input
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={userInfo.lastName}
-                        onChange={handleUserInfoChange}
-                      />
-                      <input
-                        name="email"
-                        placeholder="Email Address"
-                        value={userInfo.email}
-                        onChange={handleUserInfoChange}
-                      />
-                      <input
-                        name="phone"
-                        placeholder="Phone Number"
-                        value={userInfo.phone}
-                        onChange={handleUserInfoChange}
-                      />
-                      <textarea
-                        name="notes"
-                        placeholder="Special Requests (Optional)"
-                        value={userInfo.notes}
-                        onChange={handleUserInfoChange}
-                        rows="3"
-                      ></textarea>
-                    </div>
-                  </section>
-
                   <div className="booking-footer-cta">
                     <button
                       className={`btn btn-book ${
@@ -493,331 +318,201 @@ const Queue = ({ currentQueue, addToQueue }) => {
                   </div>
                 </div>
               </div>
-
-              <div className="mobile-section">
-                <h3>📋 Current Waitlist</h3>
-                <div className="mobile-queue-list">
-                  {currentQueue && currentQueue.length > 0 ? (
-                    currentQueue.map((item, index) => {
-                      const formatTime = (timestamp) => {
-                        const date = new Date(timestamp);
-                        return date.toLocaleTimeString("en-US", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                          hour12: true,
-                        });
-                      };
-
-                      return (
-                        <div
-                          key={item.id || index}
-                          className="mobile-queue-item"
-                        >
-                          <div className="mobile-customer-info">
-                            <div className="customer-type-icon">
-                              {item.type === "walkin" ? "🚶" : "🌐"}
-                            </div>
-                            <div className="customer-details">
-                              <div className="customer-name">{item.name}</div>
-                              <div className="customer-service">
-                                {item.service}
-                              </div>
-                              <div className="customer-type-label">
-                                {item.type === "walkin" ? "Walk-in" : "Online"}
-                              </div>
-                            </div>
-                            <div className="customer-time">
-                              {item.type === "walkin"
-                                ? formatTime(item.timestamp)
-                                : item.time}
-                            </div>
-                          </div>
-                          {index === 0 && (
-                            <div className="current-indicator">
-                              <span className="status-badge">
-                                Currently Being Served
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div
-                      className="empty-queue"
-                      style={{
-                        padding: "2rem",
-                        textAlign: "center",
-                        color: "#6c757d",
-                      }}
-                    >
-                      <p>No one in queue currently - be the first!</p>
-                    </div>
-                  )}
-                </div>
-                <div className="queue-footer">
-                  <div className="estimated-wait">
-                    Current estimated wait time:{" "}
-                    {currentQueue && currentQueue.length > 0
-                      ? `${currentQueue.length * 30} minutes`
-                      : "0 minutes"}
-                  </div>
-                </div>
-              </div>
             </div>
-
-            {/* Select a Time */}
-            <section className="booking-section">
-              <h3>Preferred Time</h3>
-              <div className="time-grid">
-                {times.map((time) => {
-                  const isPassed = isTimePassed(time);
-                  return (
-                    <button
-                      key={time}
-                      className={`time-btn${
-                        selectedTime === time ? " selected" : ""
-                      }${isPassed ? " disabled" : ""}`}
-                      onClick={() => !isPassed && setSelectedTime(time)}
-                      disabled={isPassed}
-                      title={isPassed ? "This time slot has passed" : ""}
-                    >
-                      {time}
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
 
             {/* Select a Service */}
             <section className="booking-section">
               <h3>Select Service</h3>
 
-              {/* Service Category Filter */}
-              <div className="gallery-filters">
-                <button
-                  className={`gallery-filter-btn${
-                    selectedCategory === "all" ? " active" : ""
-                  }`}
-                  onClick={() => setSelectedCategory("all")}
-                >
-                  All Services
-                </button>
-                <button
-                  className={`gallery-filter-btn${
-                    selectedCategory === "barbering" ? " active" : ""
-                  }`}
-                  onClick={() => setSelectedCategory("barbering")}
-                >
-                  ✂️ Barbering
-                </button>
-                <button
-                  className={`gallery-filter-btn${
-                    selectedCategory === "tailoring" ? " active" : ""
-                  }`}
-                  onClick={() => setSelectedCategory("tailoring")}
-                >
-                  🧵 Tailoring
-                </button>
-              </div>
-
               <div className="service-grid">
-                {services
-                  .filter(
-                    (service) =>
-                      selectedCategory === "all" ||
-                      service.category === selectedCategory
-                  )
-                  .map((service) => (
-                    <button
-                      key={service.name}
-                      className={`service-card${
-                        selectedService === service.name ? " selected" : ""
-                      } ${service.category}`}
-                      onClick={() => setSelectedService(service.name)}
-                    >
-                      <div className="service-category-badge">
-                        {service.category === "barbering" ? "✂️" : "🧵"}
-                      </div>
-                      <div className="service-title">{service.name}</div>
-                      <div className="service-desc">{service.desc}</div>
-                      <div className="service-price">{service.price}</div>
-                    </button>
-                  ))}
+                {services.map((service) => (
+                  <button
+                    key={service.name}
+                    className={`service-card${
+                      selectedService === service.name ? " selected" : ""
+                    } ${service.category}`}
+                    onClick={() => setSelectedService(service.name)}
+                  >
+                    <div className="service-category-badge">
+                      {service.category === "barbering" ? "✂️" : "🧵"}
+                    </div>
+                    <div className="service-title">{service.name}</div>
+                    <div className="service-desc">{service.desc}</div>
+                    <div className="service-price">{service.price}</div>
+                  </button>
+                ))}
               </div>
             </section>
 
-            {/* User Info */}
+            {/* Your Information Section */}
             <section className="booking-section">
-              <h3>Full Name *</h3>
-              <div className="user-info-grid">
-                <input
-                  name="firstName"
-                  placeholder="Enter your first name"
-                  value={userInfo.firstName}
-                  onChange={handleUserInfoChange}
-                  required
-                />
-                <input
-                  name="lastName"
-                  placeholder="Enter your last name"
-                  value={userInfo.lastName}
-                  onChange={handleUserInfoChange}
-                  required
-                />
+              <h3>Your Information</h3>
+
+              <div className="booking-form-grid">
+                {/* Section 1: First Name */}
+                <div className="form-column">
+                  <div className="form-group">
+                    <label htmlFor="firstName">First Name *</label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={userInfo.firstName}
+                      onChange={handleUserInfoChange}
+                      placeholder="Enter your first name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Section 2: Last Name */}
+                <div className="form-column">
+                  <div className="form-group">
+                    <label htmlFor="lastName">Last Name *</label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={userInfo.lastName}
+                      onChange={handleUserInfoChange}
+                      placeholder="Enter your last name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Section 3: Phone Number */}
+                <div className="form-column">
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number *</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={userInfo.phone}
+                      onChange={handleUserInfoChange}
+                      placeholder="Enter your phone number"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Section 4: Email Address */}
+                <div className="form-column">
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={userInfo.email}
+                      onChange={handleUserInfoChange}
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                </div>
+
+
               </div>
-            </section>
 
-            <section className="booking-section">
-              <h3>Email Address</h3>
-              <input
-                name="email"
-                placeholder="Enter your email"
-                value={userInfo.email}
-                onChange={handleUserInfoChange}
-              />
-            </section>
-
-            <section className="booking-section">
-              <h3>Phone Number *</h3>
-              <input
-                name="phone"
-                placeholder="Enter your phone number"
-                value={userInfo.phone}
-                onChange={handleUserInfoChange}
-                required
-              />
-            </section>
-
-            <section className="booking-section">
-              <h3>Special Requests</h3>
-              <textarea
-                name="notes"
-                placeholder="Any special requests or notes for your barber"
-                value={userInfo.notes}
-                onChange={handleUserInfoChange}
-                rows="3"
-              ></textarea>
-            </section>
-
-            <div className="booking-footer-cta">
               <button
-                className={`btn btn-book ${
-                  isBookingAvailable() ? "btn-primary" : "btn-disabled"
-                }`}
+                className="booking-btn"
                 onClick={handleBooking}
-                disabled={!isBookingAvailable()}
+                disabled={!selectedTime || !selectedService}
               >
-                {isBookingAvailable()
-                  ? "Book Appointment"
-                  : "Booking Unavailable"}
+                Book Appointment
               </button>
-            </div>
+            </section>
           </div>
 
-          {/* Right Panel - Current Waitlist */}
-          <div className="waitlist-panel">
-            <div className="panel-header">
-              <h2 className="panel-title">📋 Current Waitlist</h2>
-              <div className="current-time">
-                Current Time:{" "}
-                {new Date().toLocaleTimeString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </div>
-            </div>
-
-            <div className="queue-carousel-container">
-              <button
-                className="carousel-arrow carousel-arrow-left"
-                onClick={scrollLeft}
-              >
-                ‹
-              </button>
-
-              <div className="queue-list" ref={queueListRef}>
-                {currentQueue && currentQueue.length > 0 ? (
-                  getSortedQueue(currentQueue).map((item, index) => {
-                    const formatTime = (timestamp) => {
-                      const date = new Date(timestamp);
-                      return date.toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
-                      });
-                    };
-
-                    return (
-                      <div
-                        key={item.id || index}
-                        className={`queue-item ${index === 0 ? "current" : ""}`}
-                        data-customer-type={item.type || "online"}
+          {/* Waitlist Sidebar */}
+          <div className="waitlist-sidebar">
+            <div className="waitlist-card">
+              <div className="waitlist-header">
+                <h3>Current Waitlist</h3>
+                <div className="current-time">
+                  <span>Current time: {new Date().toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: true 
+                  })}</span>
+                  {totalPages > 1 && (
+                    <div className="time-controls">
+                      <button 
+                        className="time-nav" 
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 0}
                       >
-                        {/* <div className="queue-position">#{index + 1}</div> */}
-                        <div className="queue-customer-info">
-                          <div
-                            className={`customer-type-icon ${
-                              item.type || "online"
-                            }`}
-                          >
-                            {item.type === "walkin" ? "🚶" : "🌐"}
-                          </div>
-                          <div className="customer-details">
-                            <div className="customer-name">{item.name}</div>
-                            <div className="customer-service">
-                              {item.service}
-                            </div>
-                            <div className="customer-type-label">
-                              {item.type === "walkin" ? "Walk-in" : "Online"}
-                            </div>
-                          </div>
-                          <div className="customer-time">
-                            {item.type === "walkin"
-                              ? formatTime(item.timestamp)
-                              : item.time}
-                          </div>
+                        ‹
+                      </button>
+                      <span className="page-indicator">{currentPage + 1}/{totalPages}</span>
+                      <button 
+                        className="time-nav" 
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages - 1}
+                      >
+                        ›
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="waitlist-items">
+                {currentQueue && currentQueue.length > 0 ? (
+                  getCurrentPageItems().map((booking, index) => {
+                    const customerName = booking.customer ? 
+                      `${booking.customer.firstName} ${booking.customer.lastName}` : 
+                      booking.name || 'Unknown';
+                    const initials = customerName.split(' ').map(name => name.charAt(0)).join('.');
+                    const serviceName = booking.service || 'Service';
+                    const appointmentTime = booking.time || booking.timestamp ? 
+                      new Date(booking.timestamp).toLocaleTimeString('en-US', { 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        hour12: true 
+                      }) : 'N/A';
+                    // Calculate actual index in the full queue for status determination
+                    const actualIndex = currentPage * itemsPerPage + index;
+                    const status = actualIndex === 0 ? 'active' : 'waiting';
+                    
+                    return (
+                      <div key={booking.id} className="waitlist-item">
+                        <div className="service-info">
+                          <h4>{serviceName} - {initials}</h4>
+                          <div className="appointment-time">{booking.time || appointmentTime}</div>
                         </div>
-                        {index === 0 && (
-                          <div className="current-indicator">
-                            <span className="status-badge">
-                              Currently Being Served
-                            </span>
-                          </div>
-                        )}
+                        <span className={`status-badge ${status}`}>
+                          {status === 'active' ? 'Active' : 'Waiting'}
+                        </span>
                       </div>
                     );
                   })
                 ) : (
-                  <div className="empty-queue">
-                    <p>No one in queue currently - be the first!</p>
+                  <div className="waitlist-item">
+                    <div className="service-info">
+                      <h4>No appointments booked</h4>
+                      <div className="appointment-time">Book your appointment above</div>
+                    </div>
+                    <span className="status-badge waiting">Empty</span>
                   </div>
                 )}
               </div>
 
-              <button
-                className="carousel-arrow carousel-arrow-right"
-                onClick={scrollRight}
-              >
-                ›
-              </button>
-            </div>
-
-            <div className="queue-footer">
               <div className="estimated-wait">
-                Current estimated wait time:{" "}
-                {currentQueue && currentQueue.length > 0
-                  ? `${getSortedQueue(currentQueue).length * 30} minutes`
-                  : "0 minutes"}
+                <p>Estimated Wait Time</p>
+                <div className="wait-time">
+                  {currentQueue && currentQueue.length > 0 ? 
+                    `${currentQueue.length * 15} min` : 
+                    '0 min'
+                  }
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
-      <Footer />
+  
     </div>
   );
 };

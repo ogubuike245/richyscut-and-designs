@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
 
 const Login = ({ login, isLoggedIn }) => {
   const [formData, setFormData] = useState({
@@ -191,7 +190,6 @@ const Login = ({ login, isLoggedIn }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

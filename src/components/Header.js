@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { barbershopLogo } from "../assets/images";
+// import { barbershopLogo } from "../assets/images";
 
 const Header = () => {
   const location = useLocation();
@@ -53,14 +53,14 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="brand-logo" onClick={closeMenu}>
             <div className="logo-container">
-              <div className="logo-icon">
+              {/* <div className="logo-icon">
                 <img
                   src={barbershopLogo}
                   alt="RICHYS CUTS & DESIGNS Logo"
                   width="45"
                   height="45"
                 />
-              </div>
+              </div> */}
               <div className="brand-text">
                 <span className="brand-name">RICHYS CUTS & DESIGNS</span>
                 <span className="brand-tagline">

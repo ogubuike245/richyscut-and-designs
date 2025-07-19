@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
 
 const Dashboard = ({
   currentQueue,
@@ -17,17 +16,12 @@ const Dashboard = ({
   const [currentTime, setCurrentTime] = useState(new Date());
   const [todayRevenue] = useState(Math.floor(Math.random() * 500) + 200); // Mock data
   const [showWalkInForm, setShowWalkInForm] = useState(false);
-  const [walkInData, setWalkInData] = useState({ name: '', service: '' });
+  const [walkInData, setWalkInData] = useState({ firstName: "", lastName: "", service: "" });
 
   const services = [
-    // Barbering Services
-    'Adult Haircut',
-    'Beard Trim',
-    'Kids Haircut',
-    // Tailoring Services
-    'Measurements',
-    'Sewing',
-    'Amendments'
+    "Haircut & Style",
+    "Beard Trim & Shape",
+    "Kids Haircut",
   ];
 
   useEffect(() => {
@@ -50,39 +44,46 @@ const Dashboard = ({
 
   const handleWalkInSubmit = (e) => {
     e.preventDefault();
-    
+
     // Check if current time is within business hours (9 AM - 8 PM)
     const now = new Date();
     const openTime = new Date();
     openTime.setHours(9, 0, 0, 0); // 9:00 AM
     const closeTime = new Date();
     closeTime.setHours(20, 0, 0, 0); // 8:00 PM
-    
+
     if (now < openTime) {
-      alert('Walk-in customers can only be added from 9:00 AM onwards.');
+      alert("Walk-in customers can only be added from 9:00 AM onwards.");
       return;
     }
-    
+
     if (now > closeTime) {
-      alert('Walk-in customer registration is closed for today. Business hours: 9:00 AM - 8:00 PM.');
+      alert(
+        "Walk-in customer registration is closed for today. Business hours: 9:00 AM - 8:00 PM."
+      );
       return;
     }
-    
+
     // Validate required fields with specific error messages
-    if (!walkInData.name || !walkInData.name.trim()) {
-      alert('Please enter the customer name to add them to the queue.');
+    if (!walkInData.firstName || !walkInData.firstName.trim()) {
+      alert("Please enter the customer's first name to add them to the queue.");
       return;
     }
-    
+
+    if (!walkInData.lastName || !walkInData.lastName.trim()) {
+      alert("Please enter the customer's last name to add them to the queue.");
+      return;
+    }
+
     if (!walkInData.service) {
-      alert('Please select a service for the walk-in customer.');
+      alert("Please select a service for the walk-in customer.");
       return;
     }
-    
+
     addWalkInCustomer(walkInData);
-    setWalkInData({ name: '', service: '' });
+    setWalkInData({ firstName: "", lastName: "", service: "" });
     setShowWalkInForm(false);
-    alert('Walk-in customer added to queue!');
+    alert("Walk-in customer added to queue!");
   };
 
   const handleWalkInChange = (e) => {
@@ -98,7 +99,7 @@ const Dashboard = ({
     openTime.setHours(9, 0, 0, 0); // 9:00 AM
     const closeTime = new Date();
     closeTime.setHours(20, 0, 0, 0); // 8:00 PM
-    
+
     return now >= openTime && now <= closeTime;
   };
 
@@ -108,13 +109,19 @@ const Dashboard = ({
     openTime.setHours(9, 0, 0, 0); // 9:00 AM
     const closeTime = new Date();
     closeTime.setHours(20, 0, 0, 0); // 8:00 PM
-    
+
     if (now < openTime) {
-      return { status: 'closed', message: 'Walk-in registration opens at 9:00 AM' };
+      return {
+        status: "closed",
+        message: "Walk-in registration opens at 9:00 AM",
+      };
     } else if (now > closeTime) {
-      return { status: 'closed', message: 'Walk-in registration closed for today' };
+      return {
+        status: "closed",
+        message: "Walk-in registration closed for today",
+      };
     } else {
-      return { status: 'open', message: 'Walk-in registration is available' };
+      return { status: "open", message: "Walk-in registration is available" };
     }
   };
 
@@ -214,7 +221,7 @@ const Dashboard = ({
                 <div className="alert-body">
                   <div className="next-customer">
                     <div className="customer-details">
-                      <h4>{nextCustomer.name}</h4>
+                      <h4>{nextCustomer.firstName ? `${nextCustomer.firstName} ${nextCustomer.lastName}` : nextCustomer.name}</h4>
                       <p>Service: {nextCustomer.service}</p>
                     </div>
                     <button className="call-btn" onClick={callNext}>
@@ -243,82 +250,97 @@ const Dashboard = ({
                         .sort((a, b) => {
                           // Helper function to convert time string to comparable format
                           const parseTime = (customer) => {
-                            if (customer.type === 'walkin') {
+                            if (customer.type === "walkin") {
                               // For walk-ins, use timestamp
                               return new Date(customer.timestamp);
                             } else {
                               // For online bookings, parse the time string (e.g., "2:00 PM")
                               const today = new Date();
-                              const [time, period] = customer.time.split(' ');
-                              const [hours, minutes] = time.split(':');
+                              const [time, period] = customer.time.split(" ");
+                              const [hours, minutes] = time.split(":");
                               let hour24 = parseInt(hours);
-                              
-                              if (period === 'PM' && hour24 !== 12) {
+
+                              if (period === "PM" && hour24 !== 12) {
                                 hour24 += 12;
-                              } else if (period === 'AM' && hour24 === 12) {
+                              } else if (period === "AM" && hour24 === 12) {
                                 hour24 = 0;
                               }
-                              
+
                               const bookingTime = new Date(today);
-                              bookingTime.setHours(hour24, parseInt(minutes), 0, 0);
+                              bookingTime.setHours(
+                                hour24,
+                                parseInt(minutes),
+                                0,
+                                0
+                              );
                               return bookingTime;
                             }
                           };
-                          
+
                           return parseTime(a) - parseTime(b);
                         })
                         .map((customer, index) => {
-                        const formatTime = (timestamp) => {
-                          const date = typeof timestamp === 'string' ? new Date(timestamp) : new Date(timestamp);
-                          return date.toLocaleTimeString('en-US', { 
-                            hour: 'numeric', 
-                            minute: '2-digit',
-                            hour12: true 
-                          });
-                        };
-                        
-                        return (
-                          <div key={customer.id} className="queue-item">
-                            <div className="customer-info">
-                              <div className="customer-name">
-                                <span className={`customer-type ${customer.type}`}>
-                                  {customer.type === 'walkin' ? '🚶' : '🌐'}
-                                </span>
-                                {customer.name}
-                                <span className="queue-position">#{index + 1}</span>
+                          const formatTime = (timestamp) => {
+                            const date =
+                              typeof timestamp === "string"
+                                ? new Date(timestamp)
+                                : new Date(timestamp);
+                            return date.toLocaleTimeString("en-US", {
+                              hour: "numeric",
+                              minute: "2-digit",
+                              hour12: true,
+                            });
+                          };
+
+                          return (
+                            <div key={customer.id} className="queue-item">
+                              <div className="customer-info">
+                                <div className="customer-name">
+                                  <span
+                                    className={`customer-type ${customer.type}`}
+                                  >
+                                    {customer.type === "walkin" ? "🚶" : "🌐"}
+                                  </span>
+                                  {customer.firstName ? `${customer.firstName} ${customer.lastName}` : customer.name}
+                                  <span className="queue-position">
+                                    #{index + 1}
+                                  </span>
+                                </div>
+                                <div className="customer-service">
+                                  {customer.service}
+                                </div>
+                                <div className="customer-meta">
+                                  <span className="customer-type-label">
+                                    {customer.type === "walkin"
+                                      ? "Walk-in"
+                                      : "Online"}
+                                  </span>
+                                  <span className="customer-time">
+                                    {customer.type === "walkin"
+                                      ? `Arrived: ${formatTime(
+                                          customer.timestamp
+                                        )}`
+                                      : `Booked: ${customer.time}`}
+                                  </span>
+                                </div>
                               </div>
-                              <div className="customer-service">
-                                {customer.service}
-                              </div>
-                              <div className="customer-meta">
-                                <span className="customer-type-label">
-                                  {customer.type === 'walkin' ? 'Walk-in' : 'Online'}
-                                </span>
-                                <span className="customer-time">
-                                  {customer.type === 'walkin' 
-                                    ? `Arrived: ${formatTime(customer.timestamp)}`
-                                    : `Booked: ${customer.time}`
-                                  }
-                                </span>
+                              <div className="queue-actions">
+                                <button
+                                  className="queue-btn serve"
+                                  onClick={() => serveCustomer(customer.id)}
+                                >
+                                  ✅ Serve
+                                </button>
+                                <button
+                                  className="queue-btn remove"
+                                  onClick={() => removeFromQueue(customer.id)}
+                                >
+                                  ❌ Remove
+                                </button>
                               </div>
                             </div>
-                            <div className="queue-actions">
-                              <button
-                                className="queue-btn serve"
-                                onClick={() => serveCustomer(customer.id)}
-                              >
-                                ✅ Serve
-                              </button>
-                              <button
-                                className="queue-btn remove"
-                                onClick={() => removeFromQueue(customer.id)}
-                              >
-                                ❌ Remove
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })
+                          );
+                        })
                     ) : (
                       <div className="empty-queue">
                         <p>No customers in queue</p>
@@ -337,26 +359,48 @@ const Dashboard = ({
                   {/* Walk-in Status Indicator */}
                   <div className={`booking-status ${getWalkInStatus().status}`}>
                     <span className="status-icon">
-                      {getWalkInStatus().status === 'open' ? '🟢' : '🔴'}
+                      {getWalkInStatus().status === "open" ? "🟢" : "🔴"}
                     </span>
-                    <span className="status-message">{getWalkInStatus().message}</span>
+                    <span className="status-message">
+                      {getWalkInStatus().message}
+                    </span>
                   </div>
                   <div className="quick-actions">
                     <button
-                      className={`action-btn ${isWalkInAvailable() ? 'primary' : 'disabled'}`}
+                      className={`action-btn ${
+                        isWalkInAvailable() ? "primary" : "disabled"
+                      }`}
                       onClick={callNext}
-                      disabled={currentQueue.length === 0 || !isWalkInAvailable()}
-                      title={!isWalkInAvailable() ? 'Call Next is only available during business hours (9:00 AM - 8:00 PM)' : currentQueue.length === 0 ? 'No customers in queue' : 'Call next customer'}
+                      disabled={
+                        currentQueue.length === 0 || !isWalkInAvailable()
+                      }
+                      title={
+                        !isWalkInAvailable()
+                          ? "Call Next is only available during business hours (9:00 AM - 8:00 PM)"
+                          : currentQueue.length === 0
+                          ? "No customers in queue"
+                          : "Call next customer"
+                      }
                     >
-                      📢 {isWalkInAvailable() ? 'Call Next' : 'Call Closed'}
+                      📢 {isWalkInAvailable() ? "Call Next" : "Call Closed"}
                     </button>
                     <button
-                      className={`action-btn ${isWalkInAvailable() ? 'success' : 'disabled'}`}
-                      onClick={() => isWalkInAvailable() && setShowWalkInForm(!showWalkInForm)}
+                      className={`action-btn ${
+                        isWalkInAvailable() ? "success" : "disabled"
+                      }`}
+                      onClick={() =>
+                        isWalkInAvailable() &&
+                        setShowWalkInForm(!showWalkInForm)
+                      }
                       disabled={!isWalkInAvailable()}
-                      title={!isWalkInAvailable() ? getWalkInStatus().message : 'Add walk-in customer'}
+                      title={
+                        !isWalkInAvailable()
+                          ? getWalkInStatus().message
+                          : "Add walk-in customer"
+                      }
                     >
-                      🚶 {isWalkInAvailable() ? 'Add Walk-in' : 'Walk-in Closed'}
+                      🚶{" "}
+                      {isWalkInAvailable() ? "Add Walk-in" : "Walk-in Closed"}
                     </button>
                     <button
                       className="action-btn secondary"
@@ -365,15 +409,25 @@ const Dashboard = ({
                       👁️ View Queue
                     </button>
                     <button
-                      className={`action-btn ${isWalkInAvailable() ? 'warning' : 'disabled'}`}
+                      className={`action-btn ${
+                        isWalkInAvailable() ? "warning" : "disabled"
+                      }`}
                       onClick={clearQueue}
-                      disabled={currentQueue.length === 0 || !isWalkInAvailable()}
-                      title={!isWalkInAvailable() ? 'Clear Queue is only available during business hours (9:00 AM - 8:00 PM)' : currentQueue.length === 0 ? 'No customers in queue' : 'Clear all customers from queue'}
+                      disabled={
+                        currentQueue.length === 0 || !isWalkInAvailable()
+                      }
+                      title={
+                        !isWalkInAvailable()
+                          ? "Clear Queue is only available during business hours (9:00 AM - 8:00 PM)"
+                          : currentQueue.length === 0
+                          ? "No customers in queue"
+                          : "Clear all customers from queue"
+                      }
                     >
-                      🗑️ {isWalkInAvailable() ? 'Clear Queue' : 'Clear Closed'}
+                      🗑️ {isWalkInAvailable() ? "Clear Queue" : "Clear Closed"}
                     </button>
                   </div>
-                  
+
                   {/* Walk-in Customer Form */}
                   {showWalkInForm && (
                     <div className="walkin-form">
@@ -382,9 +436,19 @@ const Dashboard = ({
                         <div className="form-group">
                           <input
                             type="text"
-                            name="name"
-                            placeholder="Customer Name"
-                            value={walkInData.name}
+                            name="firstName"
+                            placeholder="First Name"
+                            value={walkInData.firstName}
+                            onChange={handleWalkInChange}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            name="lastName"
+                            placeholder="Last Name"
+                            value={walkInData.lastName}
                             onChange={handleWalkInChange}
                             required
                           />
@@ -425,7 +489,6 @@ const Dashboard = ({
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

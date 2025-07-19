@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   const [currentQueue, setCurrentQueue] = useState([]);
@@ -22,7 +23,7 @@ function App() {
       ...queueItem,
       id: queueIdCounter,
       timestamp: new Date().toISOString(),
-      type: queueItem.type || 'online', // Default to online booking
+      type: queueItem.type || "online", // Default to online booking
     };
     setCurrentQueue((prev) => [...prev, newItem]);
     setQueueIdCounter((prev) => prev + 1);
@@ -34,7 +35,7 @@ function App() {
       ...customerData,
       id: queueIdCounter,
       timestamp: new Date().toISOString(),
-      type: 'walkin',
+      type: "walkin",
     };
     setCurrentQueue((prev) => [...prev, walkInItem]);
     setQueueIdCounter((prev) => prev + 1);
@@ -54,7 +55,8 @@ function App() {
     if (currentQueue.length > 0) {
       const nextCustomer = currentQueue[0];
       serveCustomer(nextCustomer.id);
-      alert(`Called: ${nextCustomer.name} for ${nextCustomer.service}`);
+      const customerName = nextCustomer.firstName ? `${nextCustomer.firstName} ${nextCustomer.lastName}` : nextCustomer.name;
+      alert(`Called: ${customerName} for ${nextCustomer.service}`);
     }
   };
 
@@ -115,6 +117,7 @@ function App() {
           </main>
         </div>
         <BackToTop />
+        <Footer />
       </div>
     </Router>
   );
