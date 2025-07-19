@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { modernBarbershopInterior } from "../assets/images";
+import { aboutUsIntro } from "../assets/images";
 
 function Home() {
   return (
@@ -46,7 +46,7 @@ function Home() {
             </div>
             <div className="about-image">
               <img
-                src={modernBarbershopInterior}
+                src={aboutUsIntro}
                 alt="Barbershop Interior"
                 className="barbershop-interior-img"
               />

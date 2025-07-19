@@ -8,7 +8,7 @@ import barbershopLogo from "./Richys Cuts and Designs Logo.svg";
 import heroImageWebsite from "./hero-image-website.png";
 import heroImageLarge from "./hero-image-large.jpg";
 import heroImageSmall from "./hero-image-small.jpg";
-import modernBarbershopInterior from "./modern-barbershop-interior.jpg";
+import aboutUsIntro from "./about-us.jpg";
 import professionalHaircutExamples from "./professional-haircut-examples.jpg";
 
 // Haircut style images
@@ -30,7 +30,7 @@ export {
   heroImageWebsite,
   heroImageLarge,
   heroImageSmall,
-  modernBarbershopInterior,
+  aboutUsIntro,
   professionalHaircutExamples,
 
   // Individual haircut styles
@@ -53,7 +53,7 @@ const images = {
   heroImageWebsite,
   heroImageLarge,
   heroImageSmall,
-  modernBarbershopInterior,
+  aboutUsIntro,
   professionalHaircutExamples,
 
   // Individual haircut styles

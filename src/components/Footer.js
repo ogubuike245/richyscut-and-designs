@@ -75,7 +75,7 @@ function Footer() {
 
           <div className="footer-section">
             <h4>Contact Info</h4>
-            <p>📍 123 Main Street, City, State 12345</p>
+            <p>📍 Carwash, Elioparanwo, Port Harcourt, Rivers State</p>
             <p>📞 09129942545 , 07032290022</p>
             <p>✉️ richyogar@gmail.com</p>
             <p>🕒 Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
