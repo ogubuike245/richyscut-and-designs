@@ -1,0 +1,787 @@
+/* Global Styles */
+.test-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.test-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("../images/claudio-l-episcopo-uGt4D_N9j7Y-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 120px 0 80px;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.test-hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.test-hero-left {
+  flex: 1;
+  text-align: center;
+}
+
+.test-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  font-family: var(--font-heading);
+}
+
+.test-hero .test-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #d4af37;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.test-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.test-hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+  font-family: var(--font-accent);
+}
+
+.test-btn-primary,
+.test-btn-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.test-btn-primary {
+  background: var(--primary-600);
+  color: white;
+}
+
+.test-btn-primary:hover {
+  background: #b8941f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.test-btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.test-btn-secondary:hover {
+  background: white;
+  color: #333;
+  transform: translateY(-2px);
+}
+
+/* Services Section */
+.test-services {
+  padding: 80px 0;
+  background: white;
+}
+
+.test-services-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.test-services-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  letter-spacing: 2px;
+}
+
+.test-services-header p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.test-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.test-service-card {
+  background: white;
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 20px 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden;
+}
+
+.test-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.test-service-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Service card 1 - Adult Haircut */
+.test-service-card:nth-child(1) {
+  background-image: url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 2 - Kids Haircut */
+.test-service-card:nth-child(2) {
+  background-image: url("https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 3 - Beard Trim */
+.test-service-card:nth-child(3) {
+  background-image: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 4 - Senator (African wear) */
+.test-service-card:nth-child(4) {
+  background-image: url("https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 5 - Casual Wear */
+.test-service-card:nth-child(5) {
+  background-image: url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 6 - Clothes Amendments */
+.test-service-card:nth-child(6) {
+  background-image: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=center");
+}
+
+.test-service-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.test-service-card:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 18, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.test-service-icon {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  display: block;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.test-service-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: white;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.test-service-card p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.test-price {
+  background: #d4af37;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.test-service-card:hover .test-price {
+  background: #b8941f;
+  transform: scale(1.05);
+}
+
+.test-services-cta {
+  text-align: center;
+}
+
+.test-services-cta .test-btn-primary {
+  background: #333;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .test-hero h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .test-hero .test-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .test-hero p {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .test-hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .test-btn-primary,
+  .test-btn-secondary {
+    width: 200px;
+  }
+
+  .test-services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .test-service-card {
+    padding: 18px 12px;
+  }
+
+  .test-services-header h2 {
+    font-size: 2rem;
+  }
+
+  .test-about-text h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .test-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .test-hero h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Focus states for accessibility */
+.test-btn-primary:focus,
+.test-btn-secondary:focus,
+.test-nav-links a:focus {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Animation for service cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.test-service-card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.test-service-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.test-service-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.test-service-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.test-service-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.test-service-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.test-service-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Photo Gallery Section */
+.test-gallery {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.test-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  gap: 40px;
+}
+
+.test-gallery-title {
+  flex: 1;
+}
+
+.test-gallery-title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.test-gallery-title p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 500px;
+  margin: 0;
+}
+
+.test-gallery-button {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.test-btn-explore {
+  background: #d4af37;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.test-btn-explore:hover {
+  background: #b8941f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.test-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.test-gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.test-gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.test-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.test-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Gallery Responsive Design */
+@media (max-width: 768px) {
+  .test-gallery {
+    padding: 60px 0;
+  }
+
+  .test-gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .test-gallery-title h2 {
+    font-size: 2rem;
+  }
+
+  .test-gallery-button {
+    align-self: flex-start;
+  }
+
+  .test-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .test-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .test-gallery-header {
+    gap: 30px;
+  }
+}
+
+/* Experience Section */
+.test-experience {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.test-experience-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.test-experience-left {
+  padding-right: 20px;
+}
+
+.test-experience-badge {
+  display: inline-block;
+  background: #d4af37;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.test-experience-left h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.test-experience-left p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.test-experience-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.test-stat {
+  text-align: left;
+}
+
+.test-stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #d4af37;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.test-stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.test-experience-right {
+  position: relative;
+}
+
+.test-experience-image {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.test-experience-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.test-experience-image:hover img {
+  transform: scale(1.02);
+}
+
+/* Why Choose Us Section */
+.test-why-choose {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.test-why-choose-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.test-why-choose-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.test-why-choose-header p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.test-why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.test-why-choose-item {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.test-why-choose-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.test-why-choose-icon {
+  width: 80px;
+  height: 80px;
+  background: #d4af37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+}
+
+.test-why-choose-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.test-why-choose-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .test-hero {
+    padding: 80px 0 60px;
+  }
+
+  .test-hero-content {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .test-hero-left {
+    text-align: center;
+  }
+
+  .test-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .test-hero p {
+    font-size: 1.1rem;
+  }
+
+  .test-hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .test-hero-image {
+    max-width: 400px;
+  }
+
+  /* Experience Section */
+  .test-experience {
+    padding: 60px 0;
+  }
+
+  .test-experience-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .test-experience-left {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .test-experience-left h2 {
+    font-size: 2rem;
+  }
+
+  .test-experience-stats {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .test-experience-image img {
+    height: 300px;
+  }
+
+  .test-why-choose {
+    padding: 60px 0;
+  }
+
+  .test-why-choose-header h2 {
+    font-size: 2rem;
+  }
+
+  .test-why-choose-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .test-why-choose-item {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .test-hero-content {
+    gap: 40px;
+  }
+
+  .test-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .test-hero-image {
+    max-width: 450px;
+  }
+
+  .test-experience-content {
+    gap: 40px;
+  }
+
+  .test-experience-left h2 {
+    font-size: 2.2rem;
+  }
+
+  .test-why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .test-why-choose-item:last-child {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

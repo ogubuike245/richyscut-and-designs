@@ -40,9 +40,9 @@ const Header = () => {
 
   const navItems = [
     { path: "/", label: "Home", type: "secondary" },
-    { path: "/queue", label: "Join Queue", type: "secondary" },
     { path: "/gallery", label: "Gallery", type: "secondary" },
     { path: "/contact", label: "Contact", type: "secondary" },
+    { path: "/queue", label: "Book Appointment", type: "button" },
     { path: "/login", label: "Admin", type: "primary" },
   ];
 
