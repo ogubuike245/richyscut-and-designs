@@ -11,6 +11,7 @@ export default function useQueue() {
     setError(null);
     try {
       const result = await getBookings();
+      
       if (result.success && Array.isArray(result.data)) {
         setQueue(result.data);
       } else {

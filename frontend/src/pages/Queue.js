@@ -2,7 +2,8 @@ import React from "react";
 import WaitlistSidebar from "../components/WaitlistSidebar";
 import BookingPanel from "../components/BookingPanel";
 
-const Queue = ({ currentQueue, addToQueue, refreshQueue, loading, error }) => {
+const Queue = ({ currentQueue, addToQueue, refreshQueue }) => {
+  
   // Check if booking is currently available
   const isBookingAvailable = () => {
     const now = new Date();

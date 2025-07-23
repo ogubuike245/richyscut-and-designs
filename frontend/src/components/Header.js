@@ -43,7 +43,7 @@ const Header = () => {
     { path: "/gallery", label: "Gallery", type: "secondary" },
     { path: "/contact", label: "Contact", type: "secondary" },
     { path: "/queue", label: "Book Appointment", type: "button" },
-    { path: "/login", label: "Admin", type: "primary" },
+    { path: "/dashboard", label: "Admin", type: "primary" },
   ];
 
   return (

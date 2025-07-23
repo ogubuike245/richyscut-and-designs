@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
@@ -8,7 +8,23 @@ const bookingSchema = new mongoose.Schema({
   serviceType: { type: String, required: true },
   appointmentDate: { type: String, required: true },
   appointmentTime: { type: String, required: true },
-  bookingReference: { type: String, required: true, unique: true }
-});
+  bookingReference: { type: String, required: true, unique: true },
+  type: { 
+    type: String, 
+    required: true, 
+    enum: ['online', 'walk-in'],
+    default: 'online'
+  },
+  status: {
+    type: String,
+    required: true,
+    enum: ['PENDING', 'COMPLETED', 'CANCELLED'],
+    default: 'PENDING'
+  },
+  isActive: {
+    type: Boolean,
+    default: false
+  }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Booking', bookingSchema);
+export default mongoose.model('Booking', bookingSchema);

@@ -35,7 +35,7 @@ import "./assets/css/Test.css";
  */
 function App() {
   // Queue management hook for booking functionality
-  const { queue, loading, error, refresh, addBooking, setQueue } = useQueue();
+  const { queue, refresh, addBooking } = useQueue();
 
   return (
     <Router>
@@ -62,17 +62,22 @@ function App() {
                   <Queue
                     currentQueue={queue}
                     addToQueue={addBooking}
-                    setCurrentQueue={setQueue}
                     refreshQueue={refresh}
-                    loading={loading}
-                    error={error}
                   />
                 }
               />
 
               {/* Admin/Management Pages */}
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    currentQueue={queue}
+                    refreshQueue={refresh}
+                  />
+                }
+              />
 
               {/* Development/Testing */}
               <Route path="/test" element={<Test />} />

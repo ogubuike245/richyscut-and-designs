@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { services } from '../config/services';
 import { timeSlots } from '../config/timeSlots';
+import { checkAvailability } from '../api';
 
 const BookingPanel = ({
   addToQueue,
@@ -10,12 +11,44 @@ const BookingPanel = ({
 }) => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
+  const [bookedSlots, setBookedSlots] = useState([]);
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
     phone: "",
     email: "",
   });
+
+  // Fetch availability data on component mount
+  useEffect(() => {
+    const fetchAvailability = async () => {
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const availabilityData = await checkAvailability(today);
+        if (availabilityData.success) {
+          setBookedSlots(availabilityData.data.bookedSlots || []);
+        }
+      } catch (error) {
+        console.error('Failed to fetch availability:', error);
+      }
+    };
+
+    fetchAvailability();
+  }, []);
+
+  // Helper function to check if a time slot is booked
+  const isSlotBooked = (timeSlot) => {
+    // Convert 12-hour format to 24-hour format for comparison
+    const [time, period] = timeSlot.split(' ');
+    let [hours, minutes] = time.split(':');
+    hours = parseInt(hours, 10);
+    if (period === 'PM' && hours !== 12) hours += 12;
+    if (period === 'AM' && hours === 12) hours = 0;
+    const time24 = `${hours.toString().padStart(2, '0')}:${minutes}`;
+    
+    return bookedSlots.includes(time24);
+  };
+
   // Handlers
   const handleUserInfoChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
@@ -102,6 +135,18 @@ const BookingPanel = ({
     try {
       await addToQueue(bookingData);
       await refreshQueue();
+      
+      // Refresh availability data to reflect the new booking
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const availabilityData = await checkAvailability(today);
+        if (availabilityData.success) {
+          setBookedSlots(availabilityData.data.bookedSlots || []);
+        }
+      } catch (availabilityError) {
+        console.error('Failed to refresh availability:', availabilityError);
+      }
+      
       alert("Booking successful! You have been added to the waitlist.");
       setUserInfo({ firstName: "", lastName: "", phone: "", email: "" });
       setSelectedTime(null);
@@ -131,14 +176,23 @@ const BookingPanel = ({
         <div className="time-grid">
           {timeSlots.map((time) => {
             const isPassed = isTimePassed(time);
+            const isBooked = isSlotBooked(time);
+            const isDisabled = isPassed || isBooked;
             return (
               <button
                 key={time}
                 className={`time-btn ${
                   selectedTime === time ? "selected" : ""
-                }${isPassed ? " disabled" : ""}`}
-                onClick={() => !isPassed && setSelectedTime(time)}
-                disabled={isPassed}
+                }${isDisabled ? " disabled" : ""}`}
+                onClick={() => !isDisabled && setSelectedTime(time)}
+                disabled={isDisabled}
+                title={
+                  isPassed
+                    ? "This time slot has passed"
+                    : isBooked
+                    ? "Slot taken - try another time slot"
+                    : ""
+                }
               >
                 {time}
               </button>
@@ -171,17 +225,30 @@ const BookingPanel = ({
             <section className="booking-section">
               <h3>Preferred Time</h3>
               <div className="time-grid">
-                {timeSlots.map((time) => (
-                  <button
-                    key={time}
-                    className={`time-btn${
-                      selectedTime === time ? " selected" : ""
-                    }`}
-                    onClick={() => setSelectedTime(time)}
-                  >
-                    {time}
-                  </button>
-                ))}
+                {timeSlots.map((time) => {
+                  const isPassed = isTimePassed(time);
+                  const isBooked = isSlotBooked(time);
+                  const isDisabled = isPassed || isBooked;
+                  return (
+                    <button
+                      key={time}
+                      className={`time-btn${
+                        selectedTime === time ? " selected" : ""
+                      }${isDisabled ? " disabled" : ""}`}
+                      onClick={() => !isDisabled && setSelectedTime(time)}
+                      disabled={isDisabled}
+                      title={
+                        isPassed
+                          ? "This time slot has passed"
+                          : isBooked
+                          ? "Slot taken - try another time slot"
+                          : ""
+                      }
+                    >
+                      {time}
+                    </button>
+                  );
+                })}
               </div>
             </section>
 

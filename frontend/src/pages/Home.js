@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { aboutUsIntro } from "../assets/images";
 
-
 function Home() {
   return (
     <div className="home-page">
@@ -68,17 +67,17 @@ function Home() {
               <div className="home-service-card">
                 <h4>Adult Haircut</h4>
                 <p>Professional haircut with styling for adults</p>
-                <span className="home-service-price">₦1,500</span>
+                <span className="home-service-price">₦3,000</span>
               </div>
               <div className="home-service-card">
                 <h4>Beard Trim</h4>
                 <p>Beard shaping and trim with hot towel</p>
-                <span className="home-service-price">₦1,000</span>
+                <span className="home-service-price">₦1,500</span>
               </div>
               <div className="home-service-card">
                 <h4>Kids Haircut</h4>
                 <p>Professional haircut for children under 12</p>
-                <span className="home-service-price">₦700</span>
+                <span className="home-service-price">₦2000</span>
               </div>
             </div>
           </div>
@@ -95,7 +94,7 @@ function Home() {
               <div className="home-service-card">
                 <h4>Sewing</h4>
                 <p>Custom garment creation and construction</p>
-                <span className="home-service-price">₦15,000</span>
+                <span className="home-service-price">₦30,000</span>
               </div>
               <div className="home-service-card">
                 <h4>Amendments</h4>

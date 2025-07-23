@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const WaitlistSidebar = ({ currentQueue }) => {
+  
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
 
@@ -43,7 +44,7 @@ const WaitlistSidebar = ({ currentQueue }) => {
         : booking.customer
         ? `${booking.customer.firstName} ${booking.customer.lastName}`
         : booking.name || "Unknown";
-    
+
     // Show first name and initial of last name
     let displayName = customerName;
     if (booking.firstName && booking.lastName) {
@@ -109,9 +110,7 @@ const WaitlistSidebar = ({ currentQueue }) => {
         <div className="waitlist-header">
           <h3>Current Waitlist</h3>
           <div className="current-time">
-            <span>
-              Current time: {getCurrentTime()}
-            </span>
+            <span>Current time: {getCurrentTime()}</span>
             {totalPages > 1 && (
               <div className="time-controls">
                 <button
@@ -142,7 +141,7 @@ const WaitlistSidebar = ({ currentQueue }) => {
               const displayName = formatCustomerName(booking);
               const serviceName = getServiceName(booking);
               const appointmentTime = formatAppointmentTime(booking);
-              
+
               // Calculate actual index in the full queue for status determination
               const actualIndex = currentPage * itemsPerPage + index;
               const status = actualIndex === 0 ? "active" : "waiting";
@@ -154,10 +153,13 @@ const WaitlistSidebar = ({ currentQueue }) => {
                 >
                   <div className="service-info">
                     <h4>
-                      {serviceName} {""} {displayName}
+                      {serviceName} {"-"} {displayName}
                     </h4>
-                    <div className="appointment-time">
-                      {appointmentTime}
+                    <div className="appointment-time">{appointmentTime}</div>
+                    <div className="booking-type">
+                      <span className={`type-badge ${booking.type === 'walk-in' ? 'walkin' : 'online'}`}>
+                        {booking.type === 'walk-in' ? '🚶 Walk-in' : '💻 Online'}
+                      </span>
                     </div>
                   </div>
                   <span className={`status-badge ${status}`}>
@@ -181,9 +183,7 @@ const WaitlistSidebar = ({ currentQueue }) => {
 
         <div className="estimated-wait">
           <p>Estimated Wait Time</p>
-          <div className="wait-time">
-            {getEstimatedWaitTime()}
-          </div>
+          <div className="wait-time">{getEstimatedWaitTime()}</div>
         </div>
       </div>
     </div>
