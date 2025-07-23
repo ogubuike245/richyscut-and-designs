@@ -29,59 +29,30 @@ const limiter = rateLimit({
 app.use(helmet());
 app.use(limiter);
 
-// Allow all origins in development, specific origins in production
-const allowedOrigins =
-  process.env.NODE_ENV === "production"
-    ? [
-        process.env.REACT_APP_FRONTEND_URL,
-        process.env.VERCEL_FRONTEND_URL,
-        "https://richyscut-and-designs-jdw9-602nok9dk-ogubuike245s-projects.vercel.app",
-        "https://richyscut-and-designs-jdw9.vercel.app",
-      ].filter(Boolean)
-    : ["*"]; // Allow all origins in development
-
+// CORS Configuration - Allow All Origins
 app.use(
   cors({
-    origin: function (origin, callback) {
-      console.log("🌐 CORS Check:");
-      console.log("Incoming Origin:", origin);
-      console.log("Allowed Origins:", allowedOrigins);
-      console.log("NODE_ENV:", process.env.NODE_ENV);
-
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) {
-        console.log("✅ No origin - allowing request");
-        return callback(null, true);
-      }
-
-      // In development mode, allow all origins
-      if (
-        process.env.NODE_ENV !== "production" ||
-        allowedOrigins.includes("*")
-      ) {
-        console.log("✅ Development mode or wildcard - allowing all origins");
-        return callback(null, true);
-      }
-
-      // In production, check against the allowed origins list
-      if (
-        allowedOrigins.some(
-          (allowedOrigin) =>
-            origin.includes(allowedOrigin) || allowedOrigin.includes(origin)
-        )
-      ) {
-        console.log("✅ Origin allowed:", origin);
-        callback(null, true);
-      } else {
-        console.log("❌ Origin blocked:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
   })
 );
 
-// Allow preflight for all routes
+// Log CORS information for debugging
+app.use((req, res, next) => {
+  console.log(`🔍 Request: ${req.method} ${req.url}`);
+  console.log(`🌐 Origin: ${req.headers.origin || "No origin"}`);
+  console.log(`🔧 Environment: ${process.env.NODE_ENV || "development"}`);
+  next();
+});
+
+// Handle preflight requests
 app.options("*", cors());
 
 app.use(express.json({ limit: "10mb" }));
