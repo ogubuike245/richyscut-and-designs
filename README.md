@@ -51,6 +51,35 @@ richyscut-and-designs/
 - **MongoDB** - NoSQL database
 - **Mongoose 8.0.3** - ODM for MongoDB
 - **CORS** - Cross-origin resource sharing
+
+## 🚢 Deployment Guide
+
+### Deploying to Vercel
+
+This application can be deployed to Vercel with the following steps:
+
+#### Frontend Deployment
+
+1. Create a new project in Vercel and connect your repository
+2. Set the following environment variables in Vercel project settings:
+   - `REACT_APP_API_BASE_URL` = Your backend Vercel deployment URL + `/api` (e.g., `https://your-backend-url.vercel.app/api`)
+   - `REACT_APP_FRONTEND_URL` = Your frontend Vercel deployment URL (e.g., `https://your-frontend-url.vercel.app`)
+3. Deploy the frontend by selecting the `frontend` directory as the root
+
+#### Backend Deployment
+
+1. Create a new project in Vercel and connect your repository
+2. Set the following environment variables in Vercel project settings:
+   - `MONGODB_URI` = Your MongoDB connection string
+   - `PORT` = 5000 (or let Vercel handle it)
+   - `NODE_ENV` = production
+   - `FRONTEND_URL` = Your local development URL (e.g., `http://localhost:3000`)
+   - `VERCEL_FRONTEND_URL` = Your frontend Vercel deployment URL (e.g., `https://your-frontend-url.vercel.app`)
+3. Deploy the backend by selecting the `backend` directory as the root
+
+### CORS Configuration
+
+The backend is configured to handle CORS for both local development and Vercel deployment. Make sure both environment variables (`FRONTEND_URL` and `VERCEL_FRONTEND_URL`) are correctly set to avoid CORS issues.
 - **Helmet** - Security middleware
 
 ## 🛠️ Getting Started
