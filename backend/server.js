@@ -13,6 +13,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Debug environment variables
+console.log("🔧 Environment Debug:");
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -23,16 +28,31 @@ const limiter = rateLimit({
 // Middleware
 app.use(helmet());
 app.use(limiter);
-const allowedOrigins = [process.env.FRONTEND_URL];
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "https://richyscut-and-designs-jdw9.vercel.app",
+  "http://localhost:3000",
+].filter(Boolean);
 
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log("🌐 CORS Check:");
       console.log("Incoming Origin:", origin);
-      if (!origin || allowedOrigins.includes(origin)) {
+      console.log("Allowed Origins:", allowedOrigins);
+
+      if (!origin) {
+        console.log("✅ No origin - allowing request");
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        console.log("✅ Origin allowed:", origin);
         callback(null, true);
       } else {
-        callback(null, false); // No error thrown
+        console.log("❌ Origin blocked:", origin);
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
