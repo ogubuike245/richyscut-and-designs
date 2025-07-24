@@ -12,7 +12,7 @@ import {
 function Home() {
   return (
     <div className="home-page">
-      <SEOHead 
+      <SEOHead
         title="Professional Barber & Tailoring Services"
         description="Premium barbering and custom tailoring services. Book online appointments for haircuts, beard trims, and custom clothing. Expert craftsmanship with 10+ years experience."
         keywords="barber, haircut, beard trim, tailoring, custom clothing, senator wear, casual wear, online booking, professional grooming"
@@ -78,9 +78,11 @@ function Home() {
           <div className="home-services-header">
             <h2>OUR SERVICES</h2>
             <p>
-              From precision haircuts to custom tailoring, we offer comprehensive grooming and styling services. 
-              Our expert craftsmen combine traditional techniques with modern trends to deliver exceptional results 
-              that enhance your personal style and confidence.
+              From precision haircuts to custom tailoring, we offer
+              comprehensive grooming and styling services. Our expert craftsmen
+              combine traditional techniques with modern trends to deliver
+              exceptional results that enhance your personal style and
+              confidence.
             </p>
           </div>
           <div className="home-services-grid">
@@ -99,7 +101,7 @@ function Home() {
                 grooming to keep you looking sharp and confident for any
                 occasion.
               </p>
-              <div className="home-price">₦ 2,000</div>
+              <div className="home-price">₦ 3,000</div>
             </div>
             <div className="home-service-card">
               <div className="home-service-icon">
@@ -115,7 +117,7 @@ function Home() {
                 Gentle and fun haircut experience for children. Patient stylists
                 who make sure your little ones feel comfortable and happy.
               </p>
-              <div className="home-price">₦ 1,500</div>
+              <div className="home-price">₦ 2,000</div>
             </div>
             <div className="home-service-card">
               <div className="home-service-icon">
@@ -131,7 +133,7 @@ function Home() {
                 Professional beard trimming and shaping services. Maintain your
                 facial hair with precision cuts and expert grooming techniques.
               </p>
-              <div className="home-price">₦ 1,000</div>
+              <div className="home-price">₦ 1,500</div>
             </div>
             <div className="home-service-card">
               <div className="home-service-icon">
@@ -148,7 +150,7 @@ function Home() {
                 designs. Premium quality fabrics and expert tailoring for
                 cultural elegance.
               </p>
-              <div className="home-price">₦ 25,000</div>
+              <div className="home-price">₦ 30,000</div>
             </div>
             <div className="home-service-card">
               <div className="home-service-icon">
@@ -256,8 +258,9 @@ function Home() {
             <div className="home-gallery-title">
               <h2>PHOTO GALLERY</h2>
               <p>
-                Explore our portfolio of precision cuts, stylish fades, and expert grooming work. 
-                See the quality and attention to detail that sets our barbershop apart.
+                Explore our portfolio of precision cuts, stylish fades, and
+                expert grooming work. See the quality and attention to detail
+                that sets our barbershop apart.
               </p>
             </div>
             <div className="home-gallery-button">
