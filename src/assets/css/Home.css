@@ -1,0 +1,787 @@
+/* Global Styles */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.home-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("../images/claudio-l-episcopo-uGt4D_N9j7Y-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 120px 0 80px;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.home-hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.home-hero-left {
+  flex: 1;
+  text-align: center;
+}
+
+.home-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  font-family: var(--font-heading);
+}
+
+.home-hero .home-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #d4af37;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.home-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.home-hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+  font-family: var(--font-accent);
+}
+
+.home-btn-primary,
+.home-btn-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.home-btn-primary {
+  background: var(--primary-600);
+  color: white;
+}
+
+.home-btn-primary:hover {
+  background: #b8941f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.home-btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.home-btn-secondary:hover {
+  background: white;
+  color: #333;
+  transform: translateY(-2px);
+}
+
+/* Services Section */
+.home-services {
+  padding: 80px 0;
+  background: white;
+}
+
+.home-services-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.home-services-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  letter-spacing: 2px;
+}
+
+.home-services-header p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.home-service-card {
+  background: white;
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 20px 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden;
+}
+
+.home-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.home-service-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Service card 1 - Adult Haircut */
+.home-service-card:nth-child(1) {
+  background-image: url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 2 - Kids Haircut */
+.home-service-card:nth-child(2) {
+  background-image: url("https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 3 - Beard Trim */
+.home-service-card:nth-child(3) {
+  background-image: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 4 - Senator (African wear) */
+.home-service-card:nth-child(4) {
+  background-image: url("https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 5 - Casual Wear */
+.home-service-card:nth-child(5) {
+  background-image: url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center");
+}
+
+/* Service card 6 - Clothes Amendments */
+.home-service-card:nth-child(6) {
+  background-image: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=center");
+}
+
+.home-service-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.home-service-card:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 18, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.home-service-icon {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  display: block;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.home-service-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: white;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.home-service-card p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.home-price {
+  background: #d4af37;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.home-service-card:hover .home-price {
+  background: #b8941f;
+  transform: scale(1.05);
+}
+
+.home-services-cta {
+  text-align: center;
+}
+
+.home-services-cta .home-btn-primary {
+  background: #333;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-hero h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .home-hero .home-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .home-hero p {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .home-hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .home-btn-primary,
+  .home-btn-secondary {
+    width: 200px;
+  }
+
+  .home-services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .home-service-card {
+    padding: 18px 12px;
+  }
+
+  .home-services-header h2 {
+    font-size: 2rem;
+  }
+
+  .home-about-text h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .home-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-hero h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Focus states for accessibility */
+.home-btn-primary:focus,
+.home-btn-secondary:focus,
+.home-nav-links a:focus {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Animation for service cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-service-card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.home-service-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.home-service-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.home-service-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.home-service-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.home-service-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.home-service-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Photo Gallery Section */
+.home-gallery {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.home-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  gap: 40px;
+}
+
+.home-gallery-title {
+  flex: 1;
+}
+
+.home-gallery-title h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.home-gallery-title p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 500px;
+  margin: 0;
+}
+
+.home-gallery-button {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.home-btn-explore {
+  background: #d4af37;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-btn-explore:hover {
+  background: #b8941f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.home-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.home-gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.home-gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.home-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.home-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Gallery Responsive Design */
+@media (max-width: 768px) {
+  .home-gallery {
+    padding: 60px 0;
+  }
+
+  .home-gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .home-gallery-title h2 {
+    font-size: 2rem;
+  }
+
+  .home-gallery-button {
+    align-self: flex-start;
+  }
+
+  .home-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .home-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home-gallery-header {
+    gap: 30px;
+  }
+}
+
+/* Experience Section */
+.home-experience {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.home-experience-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.home-experience-left {
+  padding-right: 20px;
+}
+
+.home-experience-badge {
+  display: inline-block;
+  background: #d4af37;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.home-experience-left h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.home-experience-left p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.home-experience-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.home-stat {
+  text-align: left;
+}
+
+.home-stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #d4af37;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.home-stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.home-experience-right {
+  position: relative;
+}
+
+.home-experience-image {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.home-experience-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.home-experience-image:hover img {
+  transform: scale(1.02);
+}
+
+/* Why Choose Us Section */
+.home-why-choose {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.home-why-choose-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.home-why-choose-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.home-why-choose-header p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.home-why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.home-why-choose-item {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.home-why-choose-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.home-why-choose-icon {
+  width: 80px;
+  height: 80px;
+  background: #d4af37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+}
+
+.home-why-choose-item h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.home-why-choose-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 80px 0 60px;
+  }
+
+  .home-hero-content {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .home-hero-left {
+    text-align: center;
+  }
+
+  .home-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .home-hero p {
+    font-size: 1.1rem;
+  }
+
+  .home-hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .home-hero-image {
+    max-width: 400px;
+  }
+
+  /* Experience Section */
+  .home-experience {
+    padding: 60px 0;
+  }
+
+  .home-experience-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .home-experience-left {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .home-experience-left h2 {
+    font-size: 2rem;
+  }
+
+  .home-experience-stats {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .home-experience-image img {
+    height: 300px;
+  }
+
+  .home-why-choose {
+    padding: 60px 0;
+  }
+
+  .home-why-choose-header h2 {
+    font-size: 2rem;
+  }
+
+  .home-why-choose-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .home-why-choose-item {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .home-hero-content {
+    gap: 40px;
+  }
+
+  .home-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .home-hero-image {
+    max-width: 450px;
+  }
+
+  .home-experience-content {
+    gap: 40px;
+  }
+
+  .home-experience-left h2 {
+    font-size: 2.2rem;
+  }
+
+  .home-why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .home-why-choose-item:last-child {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

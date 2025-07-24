@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://richyscutanddesigns.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /dashboard
+Disallow: /login
+
+# Allow important pages
+Allow: /
+Allow: /queue
+Allow: /gallery
+Allow: /contact
