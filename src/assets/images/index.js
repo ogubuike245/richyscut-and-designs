@@ -5,18 +5,17 @@
 import barbershopLogo from "./Richys Cuts and Designs Logo.svg";
 
 // Hero and main images
-import heroImageLarge from "./hero-image-large.jpg";
-import heroImageSmall from "./hero-image-small.jpg";
-import aboutUsIntro from "./about-us_home.jpg";
-import professionalHaircutExamples from "./professional-haircut-examples.jpg"; // Haircut style images
-import classicSidePart from "./classic-side-part.jpg";
-import executiveCut from "./executive-cut.jpg";
-import gentlemansStyle from "./gentlemans-style.jpg";
-import midFade from "./mid-fade.jpg";
-import pompadour from "./Pompadour.jpg";
-import skinFade from "./skin-fade.jpg";
-import texturedCrop from "./textured-crop.jpg";
-import texturedQuiff from "./textured-quiff.jpg";
+
+import aboutUsIntro from "./about-us_home.webp";
+import professionalHaircutExamples from "./professional-haircut-examples.webp"; // Haircut style images
+import classicSidePart from "./classic-side-part.webp";
+import executiveCut from "./executive-cut.webp";
+import gentlemansStyle from "./gentlemans-style.webp";
+import midFade from "./mid-fade.webp";
+import pompadour from "./Pompadour.webp";
+import skinFade from "./skin-fade.webp";
+import texturedCrop from "./textured-crop.webp";
+import texturedQuiff from "./textured-quiff.webp";
 
 // Named exports - organized by category
 export {
@@ -24,8 +23,6 @@ export {
   barbershopLogo,
 
   // Hero and main images
-  heroImageLarge,
-  heroImageSmall,
   aboutUsIntro,
   professionalHaircutExamples,
   // Individual haircut styles
@@ -45,8 +42,7 @@ const images = {
   barbershopLogo,
 
   // Hero and main images
-  heroImageLarge,
-  heroImageSmall,
+
   aboutUsIntro,
   professionalHaircutExamples,
 

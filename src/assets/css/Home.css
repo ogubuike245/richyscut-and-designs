@@ -8,7 +8,7 @@
 /* Hero Section */
 .home-hero {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
-    url("../images/claudio-l-episcopo-uGt4D_N9j7Y-unsplash.jpg");
+    url("../images/claudio-l-episcopo-uGt4D_N9j7Y-unsplash.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -182,32 +182,32 @@
 
 /* Service card 1 - Adult Haircut */
 .home-service-card:nth-child(1) {
-  background-image: url("../images/adult_haircut.jpg");
+  background-image: url("../images/adult_haircut.webp");
 }
 
 /* Service card 2 - Kids Haircut */
 .home-service-card:nth-child(2) {
-  background-image: url("../images/kids_haircut.jpg");
+  background-image: url("../images/kids_haircut.webp");
 }
 
 /* Service card 3 - Beard Trim */
 .home-service-card:nth-child(3) {
-  background-image: url("../images/beard_trim.jpg");
+  background-image: url("../images/beard_trim.webp");
 }
 
 /* Service card 4 - Senator (African wear) */
 .home-service-card:nth-child(4) {
-  background-image: url("../images/senator_wear.jpg");
+  background-image: url("../images/senator_wear.webp");
 }
 
 /* Service card 5 - Casual Wear */
 .home-service-card:nth-child(5) {
-  background-image: url("../images/casual_wear.jpg");
+  background-image: url("../images/casual_wear.webp");
 }
 
 /* Service card 6 - Clothes Amendments */
 .home-service-card:nth-child(6) {
-  background-image: url("../images/cloth_amendment.jpg");
+  background-image: url("../images/cloth_amendment.webp");
 }
 
 .home-service-card:hover {
