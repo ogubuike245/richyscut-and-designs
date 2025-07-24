@@ -3,6 +3,7 @@ import { services } from "../../config/services";
 import { timeSlots } from "../../config/timeSlots";
 import { checkAvailability } from "../../api";
 import LoadingSpinnerIndicator from "../common/LoadingSpinnerIndicator";
+import { toast } from 'react-toastify';
 
 const OnlineBookingFormPanel = ({
   addToQueue,
@@ -33,7 +34,7 @@ const OnlineBookingFormPanel = ({
           setBookedSlots(availabilityData.data.bookedSlots || []);
         }
       } catch (error) {
-        console.error("Failed to fetch availability:", error);
+        toast.error("Failed to refresh availability. Please try again.");
       } finally {
         setIsLoadingAvailability(false);
       }
@@ -69,12 +70,12 @@ const OnlineBookingFormPanel = ({
     closeTime.setHours(18, 30, 0, 0); // 6:30 PM
 
     if (now < openTime) {
-      alert("Online booking opens at 10:00 AM. Please try again later.");
+      toast.error("Online booking opens at 10:00 AM. Please try again later.");
       return;
     }
 
     if (now > closeTime) {
-      alert(
+      toast.error(
         "Online booking is closed for today. Booking is available from 10:00 AM to 6:30 PM."
       );
       return;
@@ -82,23 +83,23 @@ const OnlineBookingFormPanel = ({
 
     // Validate required fields with specific error messages
     if (!userInfo.firstName || !userInfo.firstName.trim()) {
-      alert("Please enter your first name to proceed with booking.");
+      toast.error("Please enter your first name to proceed with booking.");
       return;
     }
 
     if (!userInfo.lastName || !userInfo.lastName.trim()) {
-      alert("Please enter your last name to proceed with booking.");
+      toast.error("Please enter your last name to proceed with booking.");
       return;
     }
 
     if (!selectedTime) {
-      alert("Please select a preferred time for your appointment.");
+      toast.error("Please select a preferred time for your appointment.");
       return;
     }
 
     // Check if selected time has passed
     if (isTimePassed(selectedTime)) {
-      alert(
+      toast.error(
         "The selected time slot has already passed. Please choose a different time."
       );
       setSelectedTime(null); // Clear the invalid selection
@@ -106,19 +107,19 @@ const OnlineBookingFormPanel = ({
     }
 
     if (!selectedService) {
-      alert("Please select a service for your appointment.");
+      toast.error("Please select a service for your appointment.");
       return;
     }
 
     if (!userInfo.phone || !userInfo.phone.trim()) {
-      alert("Please enter your phone number for booking confirmation.");
+      toast.error("Please enter your phone number for booking confirmation.");
       return;
     }
 
     // Prepare booking data for backend
     const selectedServiceObj = services.find((s) => s.name === selectedService);
     if (!selectedServiceObj) {
-      alert("Invalid service selection.");
+      toast.error("Invalid service selection.");
       return;
     }
     // Convert selectedTime (e.g., '10:00 AM') to 'HH:mm' 24-hour format
@@ -151,15 +152,15 @@ const OnlineBookingFormPanel = ({
           setBookedSlots(availabilityData.data.bookedSlots || []);
         }
       } catch (availabilityError) {
-        console.error("Failed to refresh availability:", availabilityError);
+        toast.error("Failed to refresh availability. Please try again.");
       }
 
-      alert("Booking successful! You have been added to the waitlist.");
+      toast.success("Booking successful! You have been added to the waitlist.");
       setUserInfo({ firstName: "", lastName: "", phone: "", email: "" });
       setSelectedTime(null);
       setSelectedService(null);
     } catch (err) {
-      alert("Failed to book appointment. Please try again.");
+      toast.error("Failed to book appointment. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

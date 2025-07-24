@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createBooking } from '../api';
+import { toast } from 'react-toastify';
 
 export const useWalkinForm = (refreshQueue) => {
   const [walkinForm, setWalkinForm] = useState({
@@ -50,10 +51,10 @@ export const useWalkinForm = (refreshQueue) => {
       await createBooking(walkinData);
       resetForm();
       refreshQueue();
-      alert("Walk-in customer added successfully!");
+      toast.success("Walk-in customer added successfully!");
     } catch (error) {
       console.error("Error adding walk-in customer:", error);
-      alert("Failed to add walk-in customer. Please try again.");
+      toast.error("Failed to add walk-in customer. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

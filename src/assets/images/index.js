@@ -7,8 +7,8 @@ import barbershopLogo from "./Richys Cuts and Designs Logo.svg";
 // Hero and main images
 import heroImageLarge from "./hero-image-large.jpg";
 import heroImageSmall from "./hero-image-small.jpg";
-import aboutUsIntro from "./about-us.jpg";
-import professionalHaircutExamples from "./professional-haircut-examples.jpg";// Haircut style images
+import aboutUsIntro from "./about-us_home.jpg";
+import professionalHaircutExamples from "./professional-haircut-examples.jpg"; // Haircut style images
 import classicSidePart from "./classic-side-part.jpg";
 import executiveCut from "./executive-cut.jpg";
 import gentlemansStyle from "./gentlemans-style.jpg";

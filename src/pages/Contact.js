@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -6,7 +7,6 @@ const Contact = () => {
     phone: "",
     message: "",
   });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -19,7 +19,7 @@ const Contact = () => {
     e.preventDefault();
     // Handle form submission here
     console.log("Form submitted:", formData);
-    alert(
+    toast.success(
       "Thank you for your appointment request! We'll get back to you soon."
     );
     setFormData({ name: "", phone: "", message: "" });

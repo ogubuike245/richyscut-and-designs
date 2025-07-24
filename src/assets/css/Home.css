@@ -13,23 +13,28 @@
   background-size: cover;
   background-position: center;
   color: white;
-  padding: 120px 0 80px;
-  height: 90vh;
+  padding: 0;
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-hero-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  width: 100%;
+  height: 100%;
   position: relative;
   z-index: 10;
 }
 
 .home-hero-left {
-  flex: 1;
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .home-hero h1 {
@@ -55,12 +60,14 @@
   max-width: 600px;
   line-height: 1.6;
   opacity: 0.9;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .home-hero-buttons {
   display: flex;
   gap: 20px;
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: 40px;
   font-family: var(--font-accent);
 }
@@ -175,32 +182,32 @@
 
 /* Service card 1 - Adult Haircut */
 .home-service-card:nth-child(1) {
-  background-image: url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/adult_haircut.jpg");
 }
 
 /* Service card 2 - Kids Haircut */
 .home-service-card:nth-child(2) {
-  background-image: url("https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/kids_haircut.jpg");
 }
 
 /* Service card 3 - Beard Trim */
 .home-service-card:nth-child(3) {
-  background-image: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/beard_trim.jpg");
 }
 
 /* Service card 4 - Senator (African wear) */
 .home-service-card:nth-child(4) {
-  background-image: url("https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/senator_wear.jpg");
 }
 
 /* Service card 5 - Casual Wear */
 .home-service-card:nth-child(5) {
-  background-image: url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/casual_wear.jpg");
 }
 
 /* Service card 6 - Clothes Amendments */
 .home-service-card:nth-child(6) {
-  background-image: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=center");
+  background-image: url("../images/cloth_amendment.jpg");
 }
 
 .home-service-card:hover {

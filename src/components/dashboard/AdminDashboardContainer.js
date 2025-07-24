@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const AdminDashboardContainer = ({
   currentQueue,
@@ -53,12 +54,12 @@ const AdminDashboardContainer = ({
     closeTime.setHours(20, 0, 0, 0); // 8:00 PM
 
     if (now < openTime) {
-      alert("Walk-in customers can only be added from 9:00 AM onwards.");
+      toast.error("Walk-in customers can only be added from 9:00 AM onwards.");
       return;
     }
 
     if (now > closeTime) {
-      alert(
+      toast.error(
         "Walk-in customer registration is closed for today. Business hours: 9:00 AM - 8:00 PM."
       );
       return;
@@ -66,24 +67,24 @@ const AdminDashboardContainer = ({
 
     // Validate required fields with specific error messages
     if (!walkInData.firstName || !walkInData.firstName.trim()) {
-      alert("Please enter the customer's first name to add them to the queue.");
+      toast.error("Please enter the customer's first name to add them to the queue.");
       return;
     }
 
     if (!walkInData.lastName || !walkInData.lastName.trim()) {
-      alert("Please enter the customer's last name to add them to the queue.");
+      toast.error("Please enter the customer's last name to add them to the queue.");
       return;
     }
 
     if (!walkInData.service) {
-      alert("Please select a service for the walk-in customer.");
+      toast.error("Please select a service for the walk-in customer.");
       return;
     }
 
     addWalkInCustomer(walkInData);
     setWalkInData({ firstName: "", lastName: "", service: "" });
     setShowWalkInForm(false);
-    alert("Walk-in customer added to queue!");
+    toast.success("Walk-in customer added to queue!");
   };
 
   const handleWalkInChange = (e) => {

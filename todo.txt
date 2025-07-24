@@ -1,3 +1,8 @@
+fix seo information to maintain consistency.
+add backen deployment links in readme
+frontedn url add in readme
+check pwa testing
+
 i love these and i would like to implement them, lets go one by one , i will be the one to tell you to move to the next one , you cannot move to the nxt by yourself, also dont try to run the server because its already running:
 
 - Implement basic loading states for better UX
