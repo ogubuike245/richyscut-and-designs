@@ -1,11 +1,19 @@
 // React and Router imports
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 
 // Layout Components
 import { SiteHeaderNavigation, SiteFooterInfo, AutoScrollToTopHandler, BackToTopScrollButton, WhatsAppFloatingContactButton } from "./components/shared";
 import { SEOHead, PWAOfflineIndicator } from "./components/common";
+
+// Page Components
+import Home from "./pages/Home";
+import Queue from "./pages/Queue";
+import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 // Custom Hooks
 import useQueue from "./hooks/useQueue";
@@ -20,14 +28,6 @@ import "./assets/css/index.css";
 import "./assets/css/Home.css";
 import "./assets/css/LoadingComponents.css";
 import "./assets/css/PWA.css";
-
-// Lazy-loaded Page Components for code splitting
-const Home = React.lazy(() => import("./pages/Home"));
-const Queue = React.lazy(() => import("./pages/Queue"));
-const Gallery = React.lazy(() => import("./pages/Gallery"));
-const Contact = React.lazy(() => import("./pages/Contact"));
-const Login = React.lazy(() => import("./pages/Login"));
-const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
 /**
  * Main App Component
@@ -53,45 +53,38 @@ function App() {
         {/* Main Content Area */}
         <div className="content-wrap">
           <main className="main-content">
-            <Suspense fallback={
-              <div className="loading-spinner-container">
-                <div className="loading-spinner"></div>
-                <span className="loading-text">Loading...</span>
-              </div>
-            }>
-              <Routes>
-                {/* Public Pages */}
-                <Route path="/" element={<Home />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/contact" element={<Contact />} />
+            <Routes>
+              {/* Public Pages */}
+              <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact" element={<Contact />} />
 
-                {/* Booking System */}
-                <Route
-                  path="/queue"
-                  element={
-                    <Queue
-                      currentQueue={queue}
-                      addToQueue={addBooking}
-                      refreshQueue={refresh}
-                      isLoading={queueLoading}
-                    />
-                  }
-                />
+              {/* Booking System */}
+              <Route
+                path="/queue"
+                element={
+                  <Queue
+                    currentQueue={queue}
+                    addToQueue={addBooking}
+                    refreshQueue={refresh}
+                    isLoading={queueLoading}
+                  />
+                }
+              />
 
-                {/* Admin/Management Pages */}
-                <Route path="/login" element={<Login />} />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <Dashboard
-                      currentQueue={queue}
-                      refreshQueue={refresh}
-                      isQueueLoading={queueLoading}
-                    />
-                  }
-                />
-              </Routes>
-            </Suspense>
+              {/* Admin/Management Pages */}
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    currentQueue={queue}
+                    refreshQueue={refresh}
+                    isQueueLoading={queueLoading}
+                  />
+                }
+              />
+            </Routes>
           </main>
         </div>
 
